@@ -4,10 +4,11 @@ import TopBar from '../Components/CommonComponents/TopBar/TopBar';
 import NavBar from '../Components/CommonComponents/NavBar/NavBar';
 import AboutUs from '../Components/AboutUs/AboutUs';
 import Footer from '../Components/CommonComponents/Footer/Footer';
-import Hero from '../Components/CommonComponents/Header/Header';
+import Header from '../Components/CommonComponents/Header/Header';
 import Service from '../Components/Service/Service';
 import Contact from '../Components/Contact/Contact';
 import Team from '../Components/Team/Team';
+import Offer from '../Components/Offer/Offer';
 
 export default function Path() {
   return (
@@ -16,7 +17,7 @@ export default function Path() {
             <TopBar />
             <NavBar />
                 <Routes>
-                    <Route path='/' element={<> <Hero /> <Team /> <Service /> </>} />
+                    <Route path='/' element={<> <Header /> <Service /> <Team /> <Offer /> </>} />
                     <Route path='/aboutus' element={<> <AboutUs /> </>} />
                     <Route path='/contact' element={<> <Contact /> </>} />
                 </Routes>
