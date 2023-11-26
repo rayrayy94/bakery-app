@@ -5,16 +5,6 @@ import { faMapLocationDot, faEnvelope, faPhoneFlip } from '@fortawesome/free-sol
 export default function ContactUs() {
   return (
     <>
-        {/* <!-- Page Header Start --> */}
-        <div className="container-fluid bg-dark bg-img p-5 mb-5">
-            <div className="row">
-                <div className="col-12 text-center">
-                    <h1 className="display-4 text-uppercase text-white">Contact Us</h1>
-                </div>
-            </div>
-        </div>
-        {/* <!-- Page Header End --> */}
-
 
         {/* <!-- Contact Start --> */}
         <div className="container-fluid contact position-relative px-5" style={{marginTop: "90px"}}>

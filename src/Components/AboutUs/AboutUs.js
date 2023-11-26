@@ -8,18 +8,6 @@ export default function AboutUs() {
   return (
     <>
 
-         {/* <!-- Page Header Start --> */}
-        <div className="container-fluid bg-dark bg-img p-5 mb-5">
-            <div className="row">
-                <div className="col-12 text-center">
-                    <h1 className="display-4 text-uppercase text-white">About Us</h1>
-                </div>
-            </div>
-        </div>
-        {/* <!-- Page Header End --> */}
-
-
-
         <div className="container-fluid pt-5">
             <div className="container">
                 <div className="section-title position-relative text-center mx-auto mb-5 pb-3" style={{maxWidth: "600px"}}>

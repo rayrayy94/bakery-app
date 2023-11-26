@@ -9,6 +9,8 @@ import Service from '../Components/Service/Service';
 import Contact from '../Components/Contact/Contact';
 import Team from '../Components/Team/Team';
 import Offer from '../Components/Offer/Offer';
+import SubHeader from '../Components/CommonComponents/SubHeader/SubHeader';
+import AddCakes from '../Components/AddCakes/AddCakes';
 
 export default function Path() {
   return (
@@ -18,8 +20,9 @@ export default function Path() {
             <NavBar />
                 <Routes>
                     <Route path='/' element={<> <Header /> <Service /> <Team /> <Offer /> </>} />
-                    <Route path='/aboutus' element={<> <AboutUs /> </>} />
-                    <Route path='/contact' element={<> <Contact /> </>} />
+                    <Route path='/aboutus' element={<> <SubHeader headerName='About Us' /> <AboutUs /> </>} />
+                    <Route path='/contact' element={<> <SubHeader headerName='Contact' /> <Contact /> </>} />
+                    <Route path='/addcake' element={<> <SubHeader headerName='Add A Cake' /> <AddCakes /> </>} />
                 </Routes>
             <Footer />
         </BrowserRouter>
