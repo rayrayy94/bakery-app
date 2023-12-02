@@ -122,6 +122,16 @@ h6,
   background-size: cover;
 }
 
+.hero-header1 {
+  background: url(./img/offer.jpg) top right no-repeat;
+  background-size: cover;
+}
+
+.hero-header2 {
+  background: url(./img/service.jpg) top right no-repeat;
+  background-size: cover;
+}
+
 .btn-play {
   position: relative;
   display: block;
