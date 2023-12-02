@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/effect-fade';
 import './styles.css';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, EffectFade } from 'swiper/modules';
 
 
 export default function Hero() {
@@ -14,11 +15,12 @@ export default function Hero() {
         slidesPerView={1}
         spaceBetween={30}
         loop={true}
+        effect={'fade'}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
         }}
-        modules={[ Autoplay]}
+        modules={[ Autoplay, EffectFade]}
         className="mySwiper"
       >
         <SwiperSlide><div>

@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './styles.css';
-import { Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 
 export default function Testimonials() {
     return (
@@ -28,8 +28,12 @@ export default function Testimonials() {
                 pagination={{
                     clickable: true,
                 }}
+                autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
                 navigation={true}
-                modules={[Pagination, Navigation]}
+                modules={[Pagination, Navigation, Autoplay]}
                 className="mySwiper"
             >
                 <SwiperSlide>
