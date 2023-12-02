@@ -2,8 +2,13 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBirthdayCake } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
 
 export default function NavBar() {
+
+    const [selected, setSelected] = useState('home');
+
+
     return (
         <div>
 
@@ -17,18 +22,11 @@ export default function NavBar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto mx-lg-auto py-0">
-                        <Link to="/" className="nav-item nav-link active">Home</Link>
-                        <Link to="/aboutus" className="nav-item nav-link">About Us</Link>
-                        <Link to="/" className="nav-item nav-link">Menu & Pricing</Link>
-                        <Link to="/" className="nav-item nav-link">Master Chefs</Link>
-                        <div className="nav-item dropdown">
-                            <Link to="/" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</Link>
-                            <div className="dropdown-menu m-0">
-                                <Link to="/" className="dropdown-item">Our Service</Link>
-                                <Link to="/" className="dropdown-item">Testimonial</Link>
-                            </div>
-                        </div>
-                        <Link to="/contact" className="nav-item nav-link">Contact Us</Link>
+                        <Link to="/" className={selected === 'home'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('home')}>Home</Link>
+                        <Link to="/aboutus" className={selected === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('about')}>About Us</Link>
+                        <Link to="/cakes" className={selected === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('cakes')}>Cakes</Link>
+                        <Link to="/addcake" className={selected === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('addcake')}>Add Cake</Link>
+                        <Link to="/contact" className={selected === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('contact')}>Contact Us</Link>
                     </div>
                 </div>
             </nav>

@@ -5,10 +5,10 @@ const cakeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // cakeImage: {
-    //     type: String,
-    //     required: true
-    // },
+    cakeImage: {
+        type: String,
+        required: true
+    },
     price: {
         type: Number,
         required: true
