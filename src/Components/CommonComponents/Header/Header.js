@@ -6,6 +6,8 @@ import 'swiper/css/effect-fade';
 import './styles.css';
 import { Autoplay, EffectFade } from 'swiper/modules';
 
+// git push test comment
+
 
 export default function Hero() {
   return (
