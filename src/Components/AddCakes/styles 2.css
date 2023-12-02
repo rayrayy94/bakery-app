@@ -1,0 +1,39 @@
+.add-cake{
+    background-color: #333;
+    padding: 50px;
+    border: 10px solid #E88F2A;
+}
+
+.add-cake h1{
+    color: #fff;
+    text-align: center;
+    text-decoration: underline #E88F2A;
+    padding-bottom: 30px;
+}
+
+.selectMenu{
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    height: 55px;
+    color: grey;
+}
+
+.cakeImage{
+    width: 300px;
+    border: 2px solid #E88F2A;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.hiddenItem{
+    visibility: hidden;
+}
+
+.cakeForm p{
+    color: crimson;
+}
+
+/* .selectMenu option{
+    color: aliceblue;
+} */
