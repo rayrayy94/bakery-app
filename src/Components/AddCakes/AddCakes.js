@@ -28,7 +28,7 @@ export default function AddCakes() {
     initialValues : initialValues,
     validationSchema : AddCakeSchema,
     onSubmit : () => {
-        console.log('Cake Added');
+        addCake();
     }
   });
 
@@ -123,7 +123,7 @@ export default function AddCakes() {
                         </div>
                        
                         <div className="col-sm-12">
-                            <button className="btn btn-primary border-inner w-100 py-3" type="submit" onClick={addCake}>Add Cake</button>
+                            <button className="btn btn-primary border-inner w-100 py-3" type="submit">Add Cake</button>
                         </div>
                     </div>
                 </form>

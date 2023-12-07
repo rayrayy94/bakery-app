@@ -85,6 +85,12 @@ export default function EditCakes() {
 
 
 
+    function goBack(){
+      navigate('/cakes');
+    };
+
+
+
   return (
       <div className='container add-cake'>
         <NotificationContainer />
@@ -127,6 +133,10 @@ export default function EditCakes() {
                        <center>
                           <div className="col-sm-12">
                               <button className="btn btn-primary border-inner w-50 py-3 center my-3" onClick={editCakeDetails}>Edit Cake</button>
+                          </div>
+
+                          <div className="col-sm-12">
+                              <button className="btn btn-primary border-inner w-50 py-3 center my-3" onClick={goBack}>Go Back</button>
                           </div>
                         </center>
                     </div>
