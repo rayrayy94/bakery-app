@@ -5,6 +5,7 @@ let app = express();
 
 require('./DB/Conn');
 const Cake = require('./Model/Cake');
+const Order = require('./Model/Orders');
 
 app.use(cors());
 app.use(express.json());
@@ -37,6 +38,17 @@ app.get('/cake', async (req, res) => {
     }
 });
 
+app.get('/togglecake/:cakeType', async (req, res) => {
+    try{
+        const cakeType = req.params.cakeType;
+        let findCake = await Cake.find({cakeType: cakeType});
+        res.status(200).send(findCake);
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+});
+
 // get a specific cake by its ID
 app.get('/cake/:id', async (req, res) => {
     try{
@@ -60,7 +72,7 @@ app.delete('/cake/:id', async (req, res) => {
     catch{
         res.status(500).send('Server Crashed');
     }
-})
+});
 
 
 // update cake info
@@ -73,7 +85,39 @@ app.patch('/cake/:id', async (req, res) => {
     catch{
         res.status(500).send('Server Crashed');
     }
-})
+});
+
+
+
+
+
+
+
+
+app.post('/orders', (req, res) => {
+    try{
+        let orderInfo = new Order(req.body);
+        orderInfo.save().then(()=> {
+            res.status(200).send(orderInfo);
+        }).catch((e)=> {
+            res.status(404).send(e)
+        });
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+});
+
+app.get('/orders', async (req,res) => {
+    try{
+        let orders = await Order.find();
+        res.status(200).send(orders); 
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+});
+
 
 
 

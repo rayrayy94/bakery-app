@@ -14,6 +14,8 @@ import AddCakes from '../Components/AddCakes/AddCakes';
 import Cakes from '../Components/Cakes/Cakes';
 import Testimonials from '../Components/Testimonials/Testimonials';
 import EditCakes from '../Components/EditCakes/EditCakes';
+import Orders from '../Components/Orders/Orders';
+import SellerOrders from '../Components/SellerOrders/SellerOrders';
 
 export default function Path() {
   return (
@@ -28,6 +30,8 @@ export default function Path() {
                     <Route path='/addcake' element={<> <SubHeader headerName='Add A Cake' /> <AddCakes /> </>} />
                     <Route path='/cakes' element={<> <SubHeader headerName='Specialty Cakes' /> <Cakes /> </>} />
                     <Route path='/editcakes' element={<> <SubHeader headerName='Edit Cake Details' /> <EditCakes /> </>} />
+                    <Route path='/ordercake' element={<> <SubHeader headerName='Order A Cake' /> <Orders /> </>} />
+                    <Route path='/sellerorder' element={<> <SubHeader headerName='Orders' /> <SellerOrders /> </>} />
                 </Routes>
             <Footer />
         </BrowserRouter>

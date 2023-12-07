@@ -27,6 +27,7 @@ export default function NavBar() {
                         <Link to="/cakes" className={selected === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('cakes')}>Cakes</Link>
                         <Link to="/addcake" className={selected === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('addcake')}>Add Cake</Link>
                         <Link to="/contact" className={selected === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('contact')}>Contact Us</Link>
+                        <Link to="/sellerorder" className={selected === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('sellerorder')}>Seller Orders</Link>
                     </div>
                 </div>
             </nav>
