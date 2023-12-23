@@ -16,9 +16,9 @@ export default function Testimonials() {
         <>
 
 
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style={{ maxWidth: "600px" }}>
-                <h2 class="text-primary font-secondary">Testimonial</h2>
-                <h1 class="display-4 text-uppercase">Our Clients Say!!!</h1>
+            <div className="section-title position-relative text-center mx-auto mb-5 pb-3" style={{ maxWidth: "600px" }}>
+                <h2 className="text-primary font-secondary">Testimonial</h2>
+                <h1 className="display-4 text-uppercase">Our Clients Say!!!</h1>
             </div>
 
             <Swiper
@@ -37,68 +37,68 @@ export default function Testimonials() {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <div class="container-fluid py-5">
-                        <div class="container">
-                            <div class="testimonial-item bg-dark text-white border-inner p-5">
-                                <div class="d-flex align-items-center mb-3">
-                                    <img class="img-fluid flex-shrink-0" src={test1} style={{ width: "60px", height: "60px" }} alt='customer1' />
-                                    <div class="ps-3">
-                                        <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
+                    <div className="container-fluid py-5">
+                        <div className="container">
+                            <div className="testimonial-item bg-dark text-white border-inner p-5">
+                                <div className="d-flex align-items-center mb-3">
+                                    <img className="img-fluid flex-shrink-0" src={test1} style={{ width: "60px", height: "60px" }} alt='customer1' />
+                                    <div className="ps-3">
+                                        <h4 className="text-primary text-uppercase mb-1">Client Name</h4>
                                         <span>Profession</span>
                                     </div>
                                 </div>
-                                <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                                <p className="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
                                 </p>
                             </div>
                         </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                <div class="container-fluid py-5">
-                        <div class="container">
-                            <div class="testimonial-item bg-dark text-white border-inner p-5">
-                                <div class="d-flex align-items-center mb-3">
-                                    <img class="img-fluid flex-shrink-0" src={test2} style={{ width: "60px", height: "60px" }} alt='customer2' />
-                                    <div class="ps-3">
-                                        <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
+                <div className="container-fluid py-5">
+                        <div className="container">
+                            <div className="testimonial-item bg-dark text-white border-inner p-5">
+                                <div className="d-flex align-items-center mb-3">
+                                    <img className="img-fluid flex-shrink-0" src={test2} style={{ width: "60px", height: "60px" }} alt='customer2' />
+                                    <div className="ps-3">
+                                        <h4 className="text-primary text-uppercase mb-1">Client Name</h4>
                                         <span>Profession</span>
                                     </div>
                                 </div>
-                                <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                                <p className="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
                                 </p>
                             </div>
                         </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                <div class="container-fluid py-5">
-                        <div class="container">
-                            <div class="testimonial-item bg-dark text-white border-inner p-5">
-                                <div class="d-flex align-items-center mb-3">
-                                    <img class="img-fluid flex-shrink-0" src={test3} style={{ width: "60px", height: "60px" }} alt='customer3' />
-                                    <div class="ps-3">
-                                        <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
+                <div className="container-fluid py-5">
+                        <div className="container">
+                            <div className="testimonial-item bg-dark text-white border-inner p-5">
+                                <div className="d-flex align-items-center mb-3">
+                                    <img className="img-fluid flex-shrink-0" src={test3} style={{ width: "60px", height: "60px" }} alt='customer3' />
+                                    <div className="ps-3">
+                                        <h4 className="text-primary text-uppercase mb-1">Client Name</h4>
                                         <span>Profession</span>
                                     </div>
                                 </div>
-                                <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                                <p className="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
                                 </p>
                             </div>
                         </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                <div class="container-fluid py-5">
-                        <div class="container">
-                            <div class="testimonial-item bg-dark text-white border-inner p-5">
-                                <div class="d-flex align-items-center mb-3">
-                                    <img class="img-fluid flex-shrink-0" src={test4} style={{ width: "60px", height: "60px" }} alt='customer4' />
-                                    <div class="ps-3">
-                                        <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
+                <div className="container-fluid py-5">
+                        <div className="container">
+                            <div className="testimonial-item bg-dark text-white border-inner p-5">
+                                <div className="d-flex align-items-center mb-3">
+                                    <img className="img-fluid flex-shrink-0" src={test4} style={{ width: "60px", height: "60px" }} alt='customer4' />
+                                    <div className="ps-3">
+                                        <h4 className="text-primary text-uppercase mb-1">Client Name</h4>
                                         <span>Profession</span>
                                     </div>
                                 </div>
-                                <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                                <p className="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
                                 </p>
                             </div>
                         </div>

@@ -8,7 +8,7 @@ export default function Service() {
   return (
     <div>
          {/* <!-- Service Start --> */}
-        <div className="container-fluid service position-relative px-5 mt-5" style={{marginBottom: "135px;"}}>
+        <div className="container-fluid service position-relative px-5 mt-5" style={{marginBottom: "135px"}}>
             <div className="container">
                 <div className="row g-5">
                     <div className="col-lg-4 col-md-6">

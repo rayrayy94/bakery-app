@@ -1,11 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 
 let app = express();
 
 require('./DB/Conn');
 const Cake = require('./Model/Cake');
 const Order = require('./Model/Orders');
+const Auth = require('./Model/Auth');
 
 app.use(cors());
 app.use(express.json());
@@ -117,6 +119,84 @@ app.get('/orders', async (req,res) => {
         res.status(500).send('Server Crashed');
     }
 });
+
+
+
+
+
+
+
+// Auth Sign Up Start
+
+// compare emails in database vs user email when signing up
+// if email is match during signup, send message saying 'email in use'
+// else continue with signup process
+
+// why cant user userEmail when destructing ?
+
+app.post('/signup', async (req, res) => {
+    try{
+        let {email} = req.body;
+
+        let findEmail = await Auth.findOne({email: email});
+
+        if(findEmail){
+            res.status(404).send({
+                message: "Email Already In Use!"
+            });
+        }
+        else{
+            let addUser = new Auth(req.body);
+            addUser.save().then(()=> {
+                res.status(200).send({
+                    message: 'Signup Successful'
+                });
+            }).catch((e)=> {
+                res.status(404).send(e);
+            });
+        }
+    }
+    catch{
+        res.status(500).send('Server Crashed')
+    }
+});
+
+app.post('/login', async (req, res)=> {
+    try{
+        let {userEmail, userPassword} = req.body;
+
+        let findUser = await Auth.findOne({email: userEmail});
+        
+        if(findUser){
+            let matchPassword = await bcrypt.compare(userPassword, findUser.password);
+            if(matchPassword){
+                const {_id, firstName, lastName, email, accountType, phoneNumber} = findUser;
+                res.status(200).send({
+                    message: 'Login Successful',
+                    data: {_id, firstName, lastName, email, accountType, phoneNumber}
+                });
+            }
+            else{
+                res.status(404).send({
+                    message: 'Incorrect Password'
+                });
+            }
+        }
+        else{
+            res.status(404).send({
+                message: 'Incorrect Email'
+            })
+        }
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+})
+
+
+
+
+// Auth Sign Up End 
 
 
 
