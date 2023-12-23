@@ -16,6 +16,8 @@ import Testimonials from '../Components/Testimonials/Testimonials';
 import EditCakes from '../Components/EditCakes/EditCakes';
 import Orders from '../Components/Orders/Orders';
 import SellerOrders from '../Components/SellerOrders/SellerOrders';
+import Signup from '../Components/Auth/Signup/Signup';
+import Signin from '../Components/Auth/Signin/Signin';
 
 export default function Path() {
   return (
@@ -32,6 +34,8 @@ export default function Path() {
                     <Route path='/editcakes' element={<> <SubHeader headerName='Edit Cake Details' /> <EditCakes /> </>} />
                     <Route path='/ordercake' element={<> <SubHeader headerName='Order A Cake' /> <Orders /> </>} />
                     <Route path='/sellerorder' element={<> <SubHeader headerName='Orders' /> <SellerOrders /> </>} />
+                    <Route path='/signup' element={<> <SubHeader headerName='Create An Account' /> <Signup /> </>} />
+                    <Route path='/signin' element={<> <SubHeader headerName='Login To Your Account' /> <Signin /> </>} />
                 </Routes>
             <Footer />
         </BrowserRouter>
