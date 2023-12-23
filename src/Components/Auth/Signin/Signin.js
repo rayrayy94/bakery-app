@@ -9,6 +9,7 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { SigninSchema } from './Validation/SigninSchema';
+import { Link } from 'react-router-dom';
 
 export default function Signin() {
 
@@ -42,6 +43,11 @@ export default function Signin() {
         axios.post(`${API.apiUri}/login`, loginInfo).then((res)=> {
             console.log(res);
             NotificationManager.success('Login Successful');
+
+            localStorage.setItem('userName', res.data.data.firstName);
+            localStorage.setItem('userID', res.data.data._id);
+            localStorage.setItem('accountType', res.data.data.accountType);
+
             setTimeout(()=> {
                 navigate('/')
             },3000);
@@ -87,11 +93,20 @@ export default function Signin() {
                                     <input type="password" name='password' className="form-control bg-light border-0 px-4" id='password' placeholder="Password" style={{height: "55px"}} onChange={handleChange} onBlur={handleBlur} value={values.password} />
                                 </div>
                                 
-                                <input type="submit" className="btn btn-primary border-inner w-100 py-3" value="Create Account" />
+                                {/* <input type="submit" className="btn btn-primary border-inner w-100 py-3" value="Create Account" /> */}
                                 
-                                {/* <div className="col-sm-12">
+                                <div className="col-sm-12">
                                     <button className="btn btn-primary border-inner w-100 py-3" type="submit">Login</button>
-                                </div> */}
+                                </div>
+
+                                <div className='col-sm-12'>
+                                    <center>
+                                        <Link to='/signup'>
+                                            Create An Account
+                                        </Link>
+                                    </center>
+
+                                </div>
                             </div>
                         </form>
                     </div>

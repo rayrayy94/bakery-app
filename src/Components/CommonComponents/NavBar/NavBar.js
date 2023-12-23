@@ -1,12 +1,17 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBirthdayCake } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom'
+import React from 'react';
+import './styles.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBirthdayCake, faUser } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function NavBar() {
 
     const [selected, setSelected] = useState('home');
+
+    const userName = localStorage.getItem('userName');
+    const id = localStorage.getItem('userID');
+    const accountType = localStorage.getItem('accountType');
 
 
     return (
@@ -25,10 +30,25 @@ export default function NavBar() {
                         <Link to="/" className={selected === 'home'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('home')}>Home</Link>
                         <Link to="/aboutus" className={selected === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('about')}>About Us</Link>
                         <Link to="/cakes" className={selected === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('cakes')}>Cakes</Link>
-                        <Link to="/addcake" className={selected === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('addcake')}>Add Cake</Link>
+                        
+                        {accountType === 'seller' ?
+                        <>
+                            <Link to="/addcake" className={selected === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('addcake')}>Add Cake</Link>
+                            <Link to="/sellerorder" className={selected === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('sellerorder')}>Seller Orders</Link>
+                        </>
+
+                        : null
+                        }
+                        
                         <Link to="/contact" className={selected === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('contact')}>Contact Us</Link>
-                        <Link to="/sellerorder" className={selected === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('sellerorder')}>Seller Orders</Link>
                     </div>
+
+                    <div className='px-5'>
+                        <Link to={id ? '/' : '/signup'}>
+                            <button className='btn btn-primary border-inner w-100 py-3'><FontAwesomeIcon icon={faUser} className="userIcon fs-1 text-primary me-3"/>{userName ? userName.toUpperCase() : 'SIGN UP'}</button>
+                        </Link>
+                    </div>
+
                 </div>
             </nav>
             {/* <!-- Navbar End --> */}

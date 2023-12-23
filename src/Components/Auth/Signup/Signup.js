@@ -9,6 +9,7 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 import { useNavigate } from 'react-router-dom';
 import { SignupSchema } from './Validation/SignupSchema';
 import { useFormik } from 'formik';
+import { Link } from 'react-router-dom';
 
 export default function Signup() {
 
@@ -132,11 +133,20 @@ export default function Signup() {
                                     </select>
                                 </div>
 
-                                <input type="submit" className="btn btn-primary border-inner w-100 py-3" value="Create Account" />
+                                {/* <input type="submit" className="btn btn-primary border-inner w-100 py-3" value="Create Account" /> */}
                                 
-                                {/* <div className="col-sm-12">
+                                <div className="col-sm-12">
                                     <button className="btn btn-primary border-inner w-100 py-3" type="submit">Create Account</button>
-                                </div> */}
+                                </div>
+
+                                <div className='col-sm-12'>
+                                    <center>
+                                        <Link to='/signin'>
+                                            Already Have An Account ?
+                                        </Link>
+                                    </center>
+
+                                </div>
                             </div>
                         </form>
                     </div>
