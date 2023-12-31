@@ -4,7 +4,7 @@
     font-size: 35px !important;
 }
 
-.btn{
+.btn-signup, .btn-logout{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -12,3 +12,17 @@
     padding-right: 30px !important;
 
 }
+
+.btn-container{
+    display: flex;
+}
+
+.signup-btn{
+    margin-right: 5px;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+}
+

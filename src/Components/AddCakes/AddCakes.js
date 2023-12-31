@@ -14,6 +14,7 @@ export default function AddCakes() {
   let navigate = useNavigate();
 
   const [cakeImage, setCakeImage] = useState('');
+  const [auth, setAuth] = useState('');
 
   let initialValues = {
     cakeName: '',
@@ -32,6 +33,18 @@ export default function AddCakes() {
     }
   });
 
+  useEffect(()=> {
+    if(!localStorage.getItem('userID')){
+        navigate('/');
+    }
+
+    if(localStorage.getItem('userID')){
+        const id = localStorage.getItem('userID');
+        setAuth(id);
+    }
+
+  }, [navigate]);
+
 
 
   function addCake(){
@@ -45,7 +58,8 @@ export default function AddCakes() {
         flavor,
         price,
         cakeType,
-        cakeImage
+        cakeImage,
+        sellerId: auth
     }
 
     axios.post('http://localhost:8080/cake', addCakeData).then(()=>{
