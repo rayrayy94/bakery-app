@@ -125,6 +125,22 @@ app.get('/orders', async (req,res) => {
 
 
 
+// Get all listings for specific seller
+app.get('/mycakes/:sellerid', async (req, res)=> {
+    try{
+        const sellerId = req.params.sellerid;
+        let findCakes = await Cake.find({sellerId: sellerId});
+        res.status(200).send({
+            listing: findCakes,
+            count: findCakes.length
+        });
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+})
+
+
 
 // Auth Sign Up Start
 

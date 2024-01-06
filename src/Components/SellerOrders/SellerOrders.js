@@ -3,8 +3,11 @@ import './styles.css';
 import { useEffect, useState } from 'react';
 import API from '../../Config/Config';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function SellerOrders() {
+
+    let navigate = useNavigate();
 
     const [orders, setOrders] = useState([]);
 
@@ -19,6 +22,12 @@ export default function SellerOrders() {
         }
         getData();
     }, []);
+
+    useEffect(()=> {
+        if(!localStorage.getItem('userID')){
+            navigate('/');
+        }
+      }, [navigate]);
 
 
   return (

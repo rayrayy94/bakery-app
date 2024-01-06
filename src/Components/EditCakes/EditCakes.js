@@ -66,6 +66,12 @@ export default function EditCakes() {
 
     }
 
+    useEffect(()=> {
+      if(!localStorage.getItem('userID')){
+          navigate('/');
+      }
+    }, [navigate]);
+
 
 
 
@@ -86,7 +92,7 @@ export default function EditCakes() {
 
 
     function goBack(){
-      navigate('/cakes');
+      navigate('/mycakes');
     };
 
 

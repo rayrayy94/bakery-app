@@ -20,6 +20,14 @@ const cakeSchema = new mongoose.Schema({
     flavor: {
         type: String,
         required: true
+    },
+    sellerId : {
+        type: String,
+        required: true
+    },
+    availabilityStatus: {
+        type: Boolean,
+        default: true
     }
 });
 

@@ -32,10 +32,12 @@ export default function Service() {
                             <Link to='/' className="text-uppercase text-dark">Read More <FontAwesomeIcon icon={faArrowAltCircleRight} /></Link>
                         </div>
                     </div>
-                    <div className="col-lg-12 col-md-6 text-center">
+                    <center>
+                    <div className="col-lg-6 col-md-6 text-center">
                         <h1 className="text-uppercase text-light mb-4">30% Discount For This Summer</h1>
                         <Link to='/' className="btn btn-primary border-inner py-3 px-5">Order Now</Link>
                     </div>
+                    </center>
                 </div>
             </div>
         </div>

@@ -86,6 +86,12 @@ export default function Orders() {
 
     }
 
+    useEffect(()=> {
+        if(!localStorage.getItem('userID')){
+            navigate('/');
+        }
+      }, [navigate]);
+
 
 
     function goBack(){
