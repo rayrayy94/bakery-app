@@ -50,6 +50,14 @@ export default function NavBar() {
 
                         : null
                         }
+
+                        {accountType === 'customer' ?
+                        <>
+                            <Link to="/customerorder" className={selected === 'customerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('customerorder')}>Customer Orders</Link>
+                        </>
+
+                        : null
+                        }
                         
                         <Link to="/contact" className={selected === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('contact')}>Contact Us</Link>
                     </div>

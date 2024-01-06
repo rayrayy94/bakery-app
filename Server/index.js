@@ -40,10 +40,11 @@ app.get('/cake', async (req, res) => {
     }
 });
 
+// toggle between 2 types of cakes and their listings
 app.get('/togglecake/:cakeType', async (req, res) => {
     try{
         const cakeType = req.params.cakeType;
-        let findCake = await Cake.find({cakeType: cakeType});
+        let findCake = await Cake.find({cakeType: cakeType, availabilityStatus: true});
         res.status(200).send(findCake);
     }
     catch{
@@ -139,6 +140,37 @@ app.get('/mycakes/:sellerid', async (req, res)=> {
         res.status(500).send('Server Crashed');
     }
 })
+
+
+
+// return orders for specific sellerID
+app.get('/sellerorders/:sellerId', async(req, res)=> {
+    try{
+        const sellerId = req.params.sellerId;
+        let findSellerOrders = await Order.find({sellerId: sellerId});
+        res.status(200).send(findSellerOrders);
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+})
+
+
+
+// return orders for specific customerID
+app.get('/customerorders/:customerId', async(req, res)=> {
+    try{
+        const customerId = req.params.sellerId;
+        let findCustomerOrders = await Order.find({customerId: customerId});
+        res.status(200).send(findCustomerOrders)
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+})
+
+
+
 
 
 

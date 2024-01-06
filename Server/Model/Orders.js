@@ -32,6 +32,14 @@ const orderSchema = new mongoose.Schema({
     cakeImage: {
         type: String,
         required: true
+    },
+    customerID: {
+        type: String,
+        required: true
+    },
+    sellerID: {
+        type: String,
+        required: true
     }
 });
 
