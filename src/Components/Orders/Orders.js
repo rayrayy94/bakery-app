@@ -10,6 +10,9 @@ import { useFormik } from 'formik';
 
 export default function Orders() {
 
+    const customerID = localStorage.getItem('userID');
+    let sellerId = '';
+
     let initialValues = {
         userName: '',
         userEmail: '',
@@ -42,6 +45,8 @@ export default function Orders() {
                 document.getElementById('cakeName').value = res.data.cakeName;
                 document.getElementById('cakePrice').value = res.data.price;
                 document.getElementById('cakeType').value = res.data.cakeType;
+                sellerId = res.data.sellerId;
+                console.log(sellerId);
                 setCakeImage(res.data.cakeImage); // getting image from database and setting it within cakeImage useState
 
             }).catch((e)=>{
@@ -72,13 +77,15 @@ export default function Orders() {
             userEmail,
             address,
             cakeImage, // this has the value of cakeImage to be pushed into database when order is being placed
-            paymentType
+            paymentType,
+            customerID,
+            sellerId
         }
 
         axios.post(`${API.apiUri}/orders`, orderDetails).then((res)=> {
             console.log(res.data);
             NotificationManager.success('Order Successful!');
-            navigate('/sellerorder');
+            navigate('/customerorder');
         }).catch((e)=>{
             console.log(e);
             NotificationManager.error('Order Failed!');
@@ -147,7 +154,7 @@ export default function Orders() {
                         <div className="col-sm-12">
                             <p><span className='hiddenItem'>:</span>{errors.paymentType}</p>
                             <select name="paymentType" id='paymentType' className='selectMenu' onChange={handleChange} onBlur={handleBlur} value={values.paymentType}>
-                                <option value="default"> --- CHOOSE A CAKE TYPE ---</option>
+                                <option value="default"> --- CHOOSE A PAYMENT METHOD ---</option>
                                 <option value="cash">Cash</option>
                                 <option value="card">Card</option>
                             </select>
