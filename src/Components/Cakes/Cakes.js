@@ -1,23 +1,16 @@
-import React, { useEffect, useState, useReducer } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import API from '../../Config/Config';
 import './styles.css';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import 'react-notifications/lib/notifications.css';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
 import { useNavigate } from 'react-router-dom';
-import Modal from 'react-modal';
 
 
 export default function Cakes() {
 
     let navigate = useNavigate();
-
     const [cakes, setCakes] = useState([]);
-    const [update, forceUpdate] = useReducer((x)=> x+1);
-    const [isOpen, setIsOpen] = useState(false);
-    const [cakeId, setCakeId] = useState('');
     const [tabName, setTabName] = useState('smash');
 
     useEffect(() => {
@@ -32,66 +25,21 @@ export default function Cakes() {
 
         getData();
 
-    }, [update, tabName]);
+    }, [tabName]);
 
 
-    function deleteCake(){
-        axios.delete(`${API.apiUri}/cake/${cakeId}`).then(()=> {
-            console.log('cake deleted!');
-            NotificationManager.success('Cake Deleted!');
-            forceUpdate();
-        }).catch((e) => {
-            console.log(e);
-            NotificationManager.error('Something Went Wrong!');
-        });
 
-        closeModal();
-    };
-
-
-    function editDetails(id){
-        navigate('/editcakes', {state: {id: id}});
-    };
 
     function orderCake(id){
         navigate('/ordercake', {state: {id: id}});
     };
 
 
-    const customStyles = {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: '#2B2825',
-          border: '5px solid #E88F2A',
-          width: '50%',
-          height: '30%', 
-        },
-        overlay: {
-            backgroundColor: 'rgba(40,40,40,0.8)',
-            zIndex: 999,
-        },
-      };
 
-
-
-      function closeModal(){
-        setIsOpen(false);
-      };
-
-      function openModal(id){
-        setCakeId(id);
-        setIsOpen(true);
-      };
 
 
     return (
         <div className="container-fluid py-5">
-            <NotificationContainer />
 
 
             <div className="container">
@@ -132,8 +80,6 @@ export default function Cakes() {
                                         <p className="text-white m-0">Flavor: {item.flavor.toUpperCase()}</p>
                                         <p className="text-white m-0">Type: {item.cakeType.toUpperCase()}</p>
                                         <button className='btn btn-primary btn-price'>$ {item.price}</button>
-                                        <button className='btn btn-primary btn-price' onClick={() => editDetails(item._id)}>Edit Details</button>
-                                        <button className='btn btn-primary btn-price' onClick={() => openModal(item._id)}>Delete Cake</button>
                                     </div>
                                 </div>
                             </div>
@@ -142,20 +88,6 @@ export default function Cakes() {
                 </div>
             </div>
 
-            
-            <Modal
-                isOpen={isOpen}
-                onRequestClose={closeModal} //close modal clicking outside of modal anywhere on screen
-                style={customStyles}
-                contentLabel="Example Modal"
-            >
-                <div className='btn-modal-container'>
-                    <h2 className='modal-text'>Are you sure you want to delete this cake? </h2>
-                    <button onClick={deleteCake} className='btn btn-primary btn-confirm'>YES</button>
-                    <button onClick={closeModal} className='btn btn-primary btn-reject'>NO</button>
-
-                </div>
-            </Modal>
 
         </div>
     )

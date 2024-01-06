@@ -24,6 +24,10 @@ const cakeSchema = new mongoose.Schema({
     sellerId : {
         type: String,
         required: true
+    },
+    availabilityStatus: {
+        type: Boolean,
+        default: true
     }
 });
 

@@ -16,7 +16,7 @@
     border-left: 2px solid #E88F2A;
     padding-left: 20px;
     /* border: 2px solid red; */
-    min-height: 250px;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -42,7 +42,7 @@
     border-left: 2px solid #E88F2A;
     padding-left: 20px;
     /* border: 2px solid red; */
-    min-height: 250px;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

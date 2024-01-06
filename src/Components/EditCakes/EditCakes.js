@@ -92,7 +92,7 @@ export default function EditCakes() {
 
 
     function goBack(){
-      navigate('/cakes');
+      navigate('/mycakes');
     };
 
 
