@@ -8,12 +8,13 @@ import { useNavigate } from 'react-router-dom';
 export default function SellerOrders() {
 
     let navigate = useNavigate();
+    const id = localStorage.getItem('userID');
 
     const [orders, setOrders] = useState([]);
 
     useEffect(()=> {
         async function getData(){
-            await axios.get(`${API.apiUri}/orders`).then((res)=>{
+            await axios.get(`${API.apiUri}/sellerorders/${id}`).then((res)=>{
                 console.log(res.data);
                 setOrders(res.data);
             }).catch((e)=>{
@@ -21,7 +22,7 @@ export default function SellerOrders() {
             });
         }
         getData();
-    }, []);
+    }, [id]);
 
     useEffect(()=> {
         if(!localStorage.getItem('userID')){

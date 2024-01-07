@@ -160,7 +160,7 @@ app.get('/sellerorders/:sellerId', async(req, res)=> {
 // return orders for specific customerID
 app.get('/customerorders/:customerId', async(req, res)=> {
     try{
-        const customerId = req.params.sellerId;
+        const customerId = req.params.customerId;
         let findCustomerOrders = await Order.find({customerId: customerId});
         res.status(200).send(findCustomerOrders)
     }

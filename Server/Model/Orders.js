@@ -33,11 +33,11 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    customerID: {
+    customerId: {
         type: String,
         required: true
     },
-    sellerID: {
+    sellerId: {
         type: String,
         required: true
     }
