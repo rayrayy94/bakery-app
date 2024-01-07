@@ -10,12 +10,13 @@ export default function CustomerOrders() {
 
 
     let navigate = useNavigate();
+    const id = localStorage.getItem('userID');
 
     const [orders, setOrders] = useState([]);
 
     useEffect(()=> {
         async function getData(){
-            await axios.get(`${API.apiUri}/orders`).then((res)=>{
+            await axios.get(`${API.apiUri}/customerorders/${id}`).then((res)=>{
                 console.log(res.data);
                 setOrders(res.data);
             }).catch((e)=>{
@@ -23,7 +24,7 @@ export default function CustomerOrders() {
             });
         }
         getData();
-    }, []);
+    }, [id]);
 
     useEffect(()=> {
         if(!localStorage.getItem('userID')){

@@ -11,7 +11,7 @@ import { useFormik } from 'formik';
 export default function Orders() {
 
     const customerID = localStorage.getItem('userID');
-    let sellerId = '';
+    const [sellerId, setSellerId] = useState('');
 
     let initialValues = {
         userName: '',
@@ -45,8 +45,7 @@ export default function Orders() {
                 document.getElementById('cakeName').value = res.data.cakeName;
                 document.getElementById('cakePrice').value = res.data.price;
                 document.getElementById('cakeType').value = res.data.cakeType;
-                sellerId = res.data.sellerId;
-                console.log(sellerId);
+                setSellerId(res.data.sellerId);
                 setCakeImage(res.data.cakeImage); // getting image from database and setting it within cakeImage useState
 
             }).catch((e)=>{
@@ -78,8 +77,9 @@ export default function Orders() {
             address,
             cakeImage, // this has the value of cakeImage to be pushed into database when order is being placed
             paymentType,
-            customerID,
+            customerId: customerID,
             sellerId
+
         }
 
         axios.post(`${API.apiUri}/orders`, orderDetails).then((res)=> {
