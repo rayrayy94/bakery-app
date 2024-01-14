@@ -97,6 +97,9 @@ app.patch('/cake/:id', async (req, res) => {
 
 
 
+
+
+
 app.post('/orders', (req, res) => {
     try{
         let orderInfo = new Order(req.body);
@@ -123,6 +126,23 @@ app.get('/orders', async (req,res) => {
 
 
 
+app.patch('/orders/:id', async (req, res)=> {
+    try{
+        const id = req.params.id;
+        const updateOrder = await Order.findByIdAndUpdate(id, req.body, {new: true});
+        res.status(200).send(updateOrder);
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+});
+
+
+
+
+
+
+
 
 
 
@@ -144,10 +164,11 @@ app.get('/mycakes/:sellerid', async (req, res)=> {
 
 
 // return orders for specific sellerID
-app.get('/sellerorders/:sellerId', async(req, res)=> {
+app.get('/sellerorders/:sellerId/:orderStatus', async(req, res)=> {
     try{
         const sellerId = req.params.sellerId;
-        let findSellerOrders = await Order.find({sellerId: sellerId});
+        const orderStatus = req.params.orderStatus;
+        let findSellerOrders = await Order.find({sellerId: sellerId, orderStatus: orderStatus});
         res.status(200).send(findSellerOrders);
     }
     catch{
