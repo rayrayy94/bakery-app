@@ -71,6 +71,36 @@
     border: 2px solid #E88F2A;
 }
 
+.tab-view-orders ul{
+    width: 80%;
+}
+
+
+.noOrderTextBox{
+    width: 50%;
+    height: 200px;
+    margin: auto;
+    background-color: #2B2825;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noOrderText{
+    color: #E88F2A;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.emoji{
+    font-size: 40px;
+}
+
+
+
+
+
 
 
 

@@ -40,7 +40,11 @@ const orderSchema = new mongoose.Schema({
     sellerId: {
         type: String,
         required: true
-    }
+    },
+    orderStatus: {
+        type: String,
+        default: "pending"
+    },
 });
 
 const Order = new mongoose.model('orders', orderSchema);
