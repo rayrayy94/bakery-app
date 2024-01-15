@@ -20,6 +20,7 @@ import Signup from '../Components/Auth/Signup/Signup';
 import Signin from '../Components/Auth/Signin/Signin';
 import MyCakes from '../Components/MyCakes/MyCakes';
 import CustomerOrders from '../Components/CustomerOrders/CustomerOrders';
+import Main from '../Components/Stripe/Main';
 
 export default function Path() {
   return (
@@ -40,6 +41,7 @@ export default function Path() {
                     <Route path='/signin' element={<> <SubHeader headerName='Login To Your Account' /> <Signin /> </>} />
                     <Route path='/mycakes' element={<> <SubHeader headerName='My Cakes' /> <MyCakes /> </>} />
                     <Route path='/customerorder' element={<> <SubHeader headerName='Orders' /> <CustomerOrders /> </>} />
+                    <Route path='/payment' element={<>  <Main /> </>} />
                 </Routes>
             <Footer />
         </BrowserRouter>
