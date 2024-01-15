@@ -91,8 +91,6 @@ export default function SellerOrders() {
 
         <div className='ordersContainer'>
 
-            {/* {!orders ? */}
-            {/* {orders === '' || orders === null */}
 
             {orders.length === 0 ?
             <>
