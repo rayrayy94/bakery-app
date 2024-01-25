@@ -21,22 +21,22 @@ export default function AboutUs() {
                         </div>
                     </div>
                     <div className="col-lg-6 pb-5">
-                        <h4 className="mb-4">Tempor erat elitr rebum clita. Diam dolor diam ipsum erat lorem sed stet labore lorem sit clita duo</h4>
-                        <p className="mb-5">Tempor erat elitr at rebum at at clita. Diam dolor diam ipsum et tempor sit. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet magna</p>
+                        <h4 className="mb-4">Enter the Sweet Symphony: Cake Zone Unveils a World of Exquisite Delights!</h4>
+                        <p className="mb-5">Welcome to Cake Zone, where every bite is a celebration! Immerse yourself in a world of indulgence with our exquisite cakes. From classic delights to custom creations, Cake Zone is your destination for sweetness. Explore a symphony of flavors, crafted with passion and precision. Get ready to elevate your cake experience – this is Cake Zone, where sweet dreams come true!</p>
                         <div className="row g-5">
                             <div className="col-sm-6">
                                 <div className="d-flex align-items-center justify-content-center bg-primary border-inner mb-4" style={{width: "90px", height: "90px"}}>
                                     <FontAwesomeIcon icon={faHeartbeat} className="fa-2x text-white" />
                                 </div>
                                 <h4 className="text-uppercase">100% Healthy</h4>
-                                <p className="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna dolor vero</p>
+                                <p className="mb-0">Indulge guilt-free! Our commitment to your well-being is reflected in our 100% healthy options. Delight in flavors that nourish without compromising on taste. From wholesome ingredients to delectable treats, savor the goodness in every bite. We believe in making wellness a delightful experience!</p>
                             </div>
                             <div className="col-sm-6">
                                 <div className="d-flex align-items-center justify-content-center bg-primary border-inner mb-4" style={{width: "90px", height: "90px"}}>
                                     <FontAwesomeIcon icon={faAward} className="fa-2x text-white" />
                                 </div>
                                 <h4 className="text-uppercase">Award Winning</h4>
-                                <p className="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna dolor vero</p>
+                                <p className="mb-0">Savor the Taste of Excellence: Our Award-Winning Creations Speak Volumes. Elevate your experience with our exceptional treats, crafted to perfection and celebrated by accolades. Join us on a journey of culinary distinction, where every bite is a testament to our commitment to excellence. Discover why we stand out among the best!</p>
                             </div>
                         </div>
                     </div>

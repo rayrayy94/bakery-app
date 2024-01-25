@@ -26,6 +26,10 @@ const authSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userImage: {
+        type: String,
+        required: true
+    },
 
 });
 

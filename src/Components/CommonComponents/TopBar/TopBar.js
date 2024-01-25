@@ -16,7 +16,7 @@ export default function TopBar() {
                             <FontAwesomeIcon icon={faEnvelope} className="fs-1 text-primary me-3" />
                             <div className="text-start">
                                 <h6 className="text-uppercase mb-1">Email Us</h6>
-                                <span>info@example.com</span>
+                                <span>info@bakery.com</span>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@ export default function TopBar() {
                             <FontAwesomeIcon icon={faPhoneFlip} className="fs-1 text-primary me-3" />
                             <div className="text-start">
                                 <h6 className="text-uppercase mb-1">Call Us</h6>
-                                <span>+012 345 6789</span>
+                                <span>1-800-2345-6789</span>
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,6 @@
     align-content: center;
     height: 50vh;
     width: 50vw;
-    margin-top: 100px;
   }
   
  #payment-form {
@@ -117,6 +116,15 @@
     transform-origin: 0px 10.2px;
     -webkit-animation: loading 2s infinite ease;
     animation: loading 2s infinite ease;
+  }
+
+  .price-text{
+    color: #fff;
+    text-align: center;
+  }
+
+  .price-color{
+    color: #E88F2A;
   }
   
   @keyframes loading {

@@ -14,21 +14,21 @@ export default function ContactUs() {
                         <div className="bg-primary border-inner text-center text-white p-5">
                             <FontAwesomeIcon icon={faMapLocationDot} className='fs-1 text-white' />
                             <h6 className="text-uppercase my-2">Our Office</h6>
-                            <span>123 Street, New York, USA</span>
+                            <span>123 Street, USA</span>
                         </div>
                     </div>
                     <div className="col-lg-4 col-md-6">
                         <div className="bg-primary border-inner text-center text-white p-5">
                             <FontAwesomeIcon icon={faEnvelope} className='fs-1 text-white' />
                             <h6 className="text-uppercase my-2">Email Us</h6>
-                            <span>info@example.com</span>
+                            <span>info@bakery.com</span>
                         </div>
                     </div>
                     <div className="col-lg-4 col-md-6">
                         <div className="bg-primary border-inner text-center text-white p-5">
                             <FontAwesomeIcon icon={faPhoneFlip} className='fs-1 text-white' />
                             <h6 className="text-uppercase my-2">Call Us</h6>
-                            <span>+012 345 6789</span>
+                            <span>1-800-2345-6789</span>
                         </div>
                     </div>
                 </div>

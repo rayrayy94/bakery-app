@@ -7,5 +7,6 @@ export const SignupSchema = yup.object().shape({
     'email' : yup.string().required('Enter Email'),
     'password' : yup.string().min(5).max(15).required('Enter Password'),
     'confirmPassword' : yup.string().min(5).max(15).required('Confirm Password'),
-    'accountType' : yup.string().required('Select One Option')
+    'accountType' : yup.string().required('Select One Option'),
+    'file' : yup.mixed().required('Upload An Image')
 });

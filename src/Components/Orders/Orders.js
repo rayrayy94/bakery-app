@@ -7,11 +7,15 @@ import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import { OrderSchema } from './Validation/OrderSchema';
 import { useFormik } from 'formik';
+import Modal from 'react-modal';
+import { customStyles2 } from '../../Styles/ModalStyles';
+import Main from '../Stripe/Main';
 
 export default function Orders() {
 
     const customerID = localStorage.getItem('userID');
     const [sellerId, setSellerId] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
 
     let initialValues = {
         userName: '',
@@ -82,14 +86,20 @@ export default function Orders() {
 
         }
 
-        axios.post(`${API.apiUri}/orders`, orderDetails).then((res)=> {
-            console.log(res.data);
-            NotificationManager.success('Order Successful!');
-            navigate('/customerorder');
-        }).catch((e)=>{
-            console.log(e);
-            NotificationManager.error('Order Failed!');
-        });
+        if(paymentType === 'card'){
+            setIsOpen(true);
+        }else{
+            axios.post(`${API.apiUri}/orders`, orderDetails).then((res)=> {
+                console.log(res.data);
+                NotificationManager.success('Order Successful!');
+                navigate('/customerorder');
+            }).catch((e)=>{
+                console.log(e);
+                NotificationManager.error('Order Failed!');
+            });
+
+        }
+
 
     }
 
@@ -104,6 +114,10 @@ export default function Orders() {
     function goBack(){
         navigate('/cakes');
     };
+
+    function closeModal(){
+        setIsOpen(false);
+    }
 
 
   return (
@@ -174,6 +188,19 @@ export default function Orders() {
                 </form>
             </div>
         </div>
+
+
+        <Modal
+                isOpen={isOpen}
+                onRequestClose={closeModal} //close modal clicking outside of modal anywhere on screen
+                style={customStyles2}
+                contentLabel="Example Modal"
+            >
+                
+
+                <Main price={250} />
+    
+            </Modal>
     </div>
   )
 }

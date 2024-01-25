@@ -1,25 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBirthdayCake, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API from '../../../Config/Config';
+import axios from 'axios';
 
 export default function NavBar() {
 
     let navigate = useNavigate();
 
     const [selected, setSelected] = useState('home');
+    const [userImage, setUserImage] = useState('');
+    // console.log(userImage)
+
+    useEffect(()=> {
+        axios.get(`${API.apiUri}/login/${id}`).then((res)=>{
+            console.log(res.data);
+            setUserImage(res?.data?.[0].userImage);
+        }).catch((e)=>{
+            console.log(e);
+        })
+    })
 
     const userName = localStorage.getItem('userName');
     const id = localStorage.getItem('userID');
     const accountType = localStorage.getItem('accountType');
+    // const userImage = localStorage.getItem('userImage');
+
 
     const logout = () => {
         localStorage.removeItem('userName');
         localStorage.removeItem('userID');
         localStorage.removeItem('accountType');
+        setUserImage('');
+        // localStorage.removeItem('userImage');
         navigate('/');
     }
 
@@ -63,9 +80,14 @@ export default function NavBar() {
                     </div>
 
                     <div className='px-5 btn-container'>
-                        <div className='signup-btn'>
+                        {/* <div className='signup-btn'>
                             <Link to={id ? '/' : '/signup'}>
                                 <button className='btn btn-signup btn-primary border-inner w-100 py-3'><FontAwesomeIcon icon={faUser} className="userIcon fs-1 text-primary me-3"/>{userName ? userName.toUpperCase() : 'SIGN UP'}</button>
+                            </Link>
+                        </div> */}
+                        <div className='signup-btn'>
+                            <Link to={id ? '/' : '/signup'}>
+                                <button className='btn btn-signup btn-primary border-inner w-100 py-3'>{userImage ? <img src={userImage} alt='user' className="userIcon fs-1 text-primary me-3" /> : <FontAwesomeIcon icon={faUser} className="userIcon fs-1 text-primary me-3"/>}{userName ? userName.toUpperCase() : 'SIGN UP'}</button>
                             </Link>
                         </div>
                         

@@ -12,7 +12,7 @@ export default function Offer() {
                         <h2 className="text-primary font-secondary">Special Kombo Pack</h2>
                         <h1 className="display-4 text-uppercase text-white">Super Crispy Cakes</h1>
                     </div>
-                    <p className="text-white mb-4">Eirmod sed tempor lorem ut dolores sit kasd ipsum. Dolor ea et dolore et at sea ea at dolor justo ipsum duo rebum sea. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo lorem. Elitr ut dolores magna sit. Sea dolore sed et.</p>
+                    <p className="text-white mb-4">Savor the sweetness of moments with our irresistible baked delights. From delectable pastries to bespoke cakes, our creations are a celebration of flavors and artistry, ensuring every bite is a moment of pure delight.</p>
                     <Link to='/' className="btn btn-primary border-inner py-3 px-5 me-3">Shop Now</Link>
                     <Link to='/' className="btn btn-dark border-inner py-3 px-5">Read More</Link>
                 </div>

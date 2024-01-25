@@ -244,10 +244,10 @@ app.post('/login', async (req, res)=> {
         if(findUser){
             let matchPassword = await bcrypt.compare(userPassword, findUser.password);
             if(matchPassword){
-                const {_id, firstName, lastName, email, accountType, phoneNumber} = findUser;
+                const {_id, firstName, lastName, email, accountType, phoneNumber, userImage} = findUser;
                 res.status(200).send({
                     message: 'Login Successful',
-                    data: {_id, firstName, lastName, email, accountType, phoneNumber}
+                    data: {_id, firstName, lastName, email, accountType, phoneNumber, userImage}
                 });
             }
             else{
@@ -264,6 +264,18 @@ app.post('/login', async (req, res)=> {
     }
     catch{
         res.status(500).send('Server Crashed');
+    }
+})
+
+
+app.get('/login/:id', async (req, res)=> {
+    try{
+        let id = req.params.id;
+        let findUser = await Auth.find({_id: id});
+        res.status(200).send(findUser);
+    }
+    catch{
+        res.status(500).send('Server Crashed')
     }
 })
 
