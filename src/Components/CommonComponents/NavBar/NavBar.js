@@ -7,12 +7,19 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../../../Config/Config';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateNavItem } from '../../../Redux/CounterSlice';
+
 
 export default function NavBar() {
 
+    const navItem = useSelector((state)=> state.counter.navItem);
+    const dispatch = useDispatch();
+
     let navigate = useNavigate();
 
-    const [selected, setSelected] = useState('home');
+    // const [selected, setSelected] = useState('home');
+
     const [userImage, setUserImage] = useState('');
     // console.log(userImage)
 
@@ -36,6 +43,7 @@ export default function NavBar() {
         localStorage.removeItem('userID');
         localStorage.removeItem('accountType');
         setUserImage('');
+        dispatch(updateNavItem('home'));
         // localStorage.removeItem('userImage');
         navigate('/');
     }
@@ -54,15 +62,15 @@ export default function NavBar() {
                 </button>
                 <div className="collapse navbar-collapse nav-container" id="navbarCollapse">
                     <div className="navbar-nav mx-4">
-                        <Link to="/" className={selected === 'home'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('home')}>Home</Link>
-                        <Link to="/aboutus" className={selected === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('about')}>About Us</Link>
-                        <Link to="/cakes" className={selected === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('cakes')}>Cakes</Link>
+                        <Link to="/" className={navItem === 'home'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('home'))}>Home</Link>
+                        <Link to="/aboutus" className={navItem === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('about'))}>About Us</Link>
+                        <Link to="/cakes" className={navItem === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('cakes'))}>Cakes</Link>
                         
                         {accountType === 'seller' ?
                         <>
-                            <Link to="/addcake" className={selected === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('addcake')}>Add Cake</Link>
-                            <Link to="/mycakes" className={selected === 'mycakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('mycakes')}>My Cakes</Link>
-                            <Link to="/sellerorder" className={selected === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('sellerorder')}>Seller Orders</Link>
+                            <Link to="/addcake" className={navItem === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('addcake'))}>Add Cake</Link>
+                            <Link to="/mycakes" className={navItem === 'mycakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('mycakes'))}>My Cakes</Link>
+                            <Link to="/sellerorder" className={navItem === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('sellerorder'))}>Seller Orders</Link>
                         </>
 
                         : null
@@ -70,13 +78,13 @@ export default function NavBar() {
 
                         {accountType === 'customer' ?
                         <>
-                            <Link to="/customerorder" className={selected === 'customerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('customerorder')}>Customer Orders</Link>
+                            <Link to="/customerorder" className={navItem === 'customerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('customerorder'))}>Customer Orders</Link>
                         </>
 
                         : null
                         }
                         
-                        <Link to="/contact" className={selected === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> setSelected('contact')}>Contact Us</Link>
+                        <Link to="/contact" className={navItem === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('contact'))}>Contact Us</Link>
                     </div>
 
                     <div className='px-5 btn-container'>
@@ -87,7 +95,7 @@ export default function NavBar() {
                         </div> */}
                         <div className='signup-btn'>
                             <Link to={id ? '/' : '/signup'}>
-                                <button className='btn btn-signup btn-primary border-inner w-100 py-3'>{userImage ? <img src={userImage} alt='user' className="userIcon fs-1 text-primary me-3" /> : <FontAwesomeIcon icon={faUser} className="userIcon fs-1 text-primary me-3"/>}{userName ? userName.toUpperCase() : 'SIGN UP'}</button>
+                                <button className='btn btn-signup btn-primary border-inner w-100 py-3 btn-style'>{userImage ? <img src={userImage} alt='user' className="userIcon" /> : <FontAwesomeIcon icon={faUser} className="userIcon fs-1 text-primary me-3"/>} {userName ? 'Hello' + " " + userName.toUpperCase() : 'SIGN UP'}</button>
                             </Link>
                         </div>
                         

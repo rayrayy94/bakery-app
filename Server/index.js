@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 
 let app = express();
 
@@ -43,6 +44,8 @@ app.get('/cake', async (req, res) => {
         res.status(500).send('Server Crashed');
     }
 });
+
+
 
 // toggle between 2 types of cakes and their listings
 app.get('/togglecake/:cakeType', async (req, res) => {
@@ -197,6 +200,29 @@ app.get('/customerorders/:customerId/:orderStatus', async(req, res)=> {
 
 
 
+// return sellers only
+app.get('/sellerAccountType', async (req, res)=> {
+    try{
+        let findAccountType = await Auth.find({accountType: 'seller'});
+        res.status(200).send(findAccountType);
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+})
+
+// return sellers with cake listings of 3 or more
+app.get('/sellerListing', async (req, res)=> {
+    try{
+        let findSellerListing = await Cake.find({availabilityStatus: true });
+        res.status(200).send(findSellerListing);
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+})
+
+
 
 
 
@@ -319,6 +345,45 @@ const calculateOrderAmount = (items) => {
       clientSecret: paymentIntent.client_secret,
     });
   });
+
+
+
+
+
+
+
+
+
+
+// NODEMAILER CONTACT 
+app.post('/contact', (req, res)=> {
+    const {fullName, email, subject, message} = req.body;
+
+    var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'rehanarshad2415@gmail.com',
+        pass: 'egvh iajk huzq vmxm'
+    }
+    });
+
+    var mailOptions = {
+    from: email,
+    name: fullName,
+    to: 'rehanarshad2415@gmail.com',
+    subject: subject,
+    text: message
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Email sent: ' + info.response);
+    }
+    });
+})
+
 
 
 

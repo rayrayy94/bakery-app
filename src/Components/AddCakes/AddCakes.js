@@ -7,8 +7,12 @@ import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { updateNavItem } from '../../Redux/CounterSlice';
+import { useDispatch } from 'react-redux';
 
 export default function AddCakes() {
+
+  const dispatch = useDispatch();
    
   
   let navigate = useNavigate();
@@ -66,6 +70,7 @@ export default function AddCakes() {
         console.log('Cake Added');
         NotificationManager.success('Cake Added');
         setTimeout(() => {
+            dispatch(updateNavItem('cakes'));
             navigate('/cakes');
         }, 2000);
     }).catch((e)=>{

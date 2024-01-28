@@ -3,18 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const counterSlice = createSlice({
     name: 'counter',
     initialState: {
-        value: 0
+        navItem: 'home',
     },
     reducers: {
-        incremented: state => {
-            state.value += 1
+        updateNavItem: (state, action) => {
+            state.navItem = action.payload
         },
-        decremented: state => {
-            state.value -= 1
-        }
     }
 })
 
-export const { incremented, decremented } = counterSlice.actions;
+export const { updateNavItem } = counterSlice.actions;
 
 export default counterSlice.reducer;

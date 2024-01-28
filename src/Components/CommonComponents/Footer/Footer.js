@@ -2,9 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBirthdayCake, faMapLocationDot, faEnvelope, faPhoneFlip, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { updateNavItem } from '../../../Redux/CounterSlice';
 
 
 export default function Footer() {
+
+    const dispatch = useDispatch();
+
+
   return (
     <>
         {/* <!-- Footer Start --> */}
@@ -44,11 +50,11 @@ export default function Footer() {
                             <div className="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                                 <h4 className="text-primary text-uppercase mb-4">Quick Links</h4>
                                 <div className="d-flex flex-column justify-content-start">
-                                    <Link to='/' className="text-secondary mb-2"><FontAwesomeIcon icon={faArrowCircleRight} className='text-primary me-2' />Home</Link>
-                                    <Link to='/aboutus' className="text-secondary mb-2"><FontAwesomeIcon icon={faArrowCircleRight} className='text-primary me-2' />About Us</Link>
-                                    <Link to='/cakes' className="text-secondary mb-2"><FontAwesomeIcon icon={faArrowCircleRight} className='text-primary me-2' />Our Cakes</Link>
+                                    <Link to='/' className="text-secondary mb-2" onClick={()=> dispatch(updateNavItem('home'))}><FontAwesomeIcon icon={faArrowCircleRight} className='text-primary me-2' />Home</Link>
+                                    <Link to='/aboutus' className="text-secondary mb-2" onClick={()=> dispatch(updateNavItem('about'))}><FontAwesomeIcon icon={faArrowCircleRight} className='text-primary me-2' />About Us</Link>
+                                    <Link to='/cakes' className="text-secondary mb-2" onClick={()=> dispatch(updateNavItem('cakes'))}><FontAwesomeIcon icon={faArrowCircleRight} className='text-primary me-2' />Our Cakes</Link>
                                     {/* <Link to='/team' className="text-secondary mb-2"><FontAwesomeIcon icon={faArrowCircleRight} className='text-primary me-2' />Meet The Team</Link> */}
-                                    <Link to='/contact' className="text-secondary"><FontAwesomeIcon icon={faArrowCircleRight} className='text-primary me-2' />Contact Us</Link>
+                                    <Link to='/contact' className="text-secondary" onClick={()=> dispatch(updateNavItem('contact'))}><FontAwesomeIcon icon={faArrowCircleRight} className='text-primary me-2' />Contact Us</Link>
                                 </div>
                             </div>
                             <div className="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">

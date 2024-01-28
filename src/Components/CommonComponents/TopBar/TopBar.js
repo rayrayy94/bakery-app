@@ -4,8 +4,13 @@ import { faBirthdayCake } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faPhoneFlip } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { updateNavItem } from '../../../Redux/CounterSlice';
+import { useDispatch } from 'react-redux';
 
 export default function TopBar() {
+
+    const dispatch = useDispatch();
+
     return (
         <div>
             {/* <!-- Topbar Start --> */}
@@ -22,7 +27,7 @@ export default function TopBar() {
                     </div>
                     <div className="col-lg-4 text-center bg-primary border-inner py-3">
                         <div className="d-inline-flex align-items-center justify-content-center">
-                            <Link to='/' className="navbar-brand">
+                            <Link to='/' className="navbar-brand" onClick={()=> dispatch(updateNavItem('home'))}>
                                 <h1 className="m-0 text-uppercase text-white"><FontAwesomeIcon icon={faBirthdayCake} className="fs-1 text-dark me-3" /> CakeZone</h1>
                             </Link>
                         </div>
