@@ -47,6 +47,7 @@ export default function Signin() {
             localStorage.setItem('userName', res.data.data.firstName);
             localStorage.setItem('userID', res.data.data._id);
             localStorage.setItem('accountType', res.data.data.accountType);
+            // localStorage.setItem('userImage', res.data.data.userImage);
 
             setTimeout(()=> {
                 navigate('/')

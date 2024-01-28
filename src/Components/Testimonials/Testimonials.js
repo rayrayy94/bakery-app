@@ -43,11 +43,11 @@ export default function Testimonials() {
                                 <div className="d-flex align-items-center mb-3">
                                     <img className="img-fluid flex-shrink-0" src={test1} style={{ width: "60px", height: "60px" }} alt='customer1' />
                                     <div className="ps-3">
-                                        <h4 className="text-primary text-uppercase mb-1">Client Name</h4>
-                                        <span>Profession</span>
+                                        <h4 className="text-primary text-uppercase mb-1">Sarah Johnson</h4>
+                                        <span>Marketing Executive</span>
                                     </div>
                                 </div>
-                                <p className="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                                <p className="mb-0">The bakery website made my celebrations extra special with its delicious treats and seamless service!
                                 </p>
                             </div>
                         </div>
@@ -60,11 +60,11 @@ export default function Testimonials() {
                                 <div className="d-flex align-items-center mb-3">
                                     <img className="img-fluid flex-shrink-0" src={test2} style={{ width: "60px", height: "60px" }} alt='customer2' />
                                     <div className="ps-3">
-                                        <h4 className="text-primary text-uppercase mb-1">Client Name</h4>
-                                        <span>Profession</span>
+                                        <h4 className="text-primary text-uppercase mb-1">Michael Rodriguez</h4>
+                                        <span>Software Developer</span>
                                     </div>
                                 </div>
-                                <p className="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                                <p className="mb-0">I love the convenience and variety offered by the bakery website—every bite is a delightful experience!
                                 </p>
                             </div>
                         </div>
@@ -77,11 +77,11 @@ export default function Testimonials() {
                                 <div className="d-flex align-items-center mb-3">
                                     <img className="img-fluid flex-shrink-0" src={test3} style={{ width: "60px", height: "60px" }} alt='customer3' />
                                     <div className="ps-3">
-                                        <h4 className="text-primary text-uppercase mb-1">Client Name</h4>
-                                        <span>Profession</span>
+                                        <h4 className="text-primary text-uppercase mb-1">Emily Thompson</h4>
+                                        <span>Graphic Designer</span>
                                     </div>
                                 </div>
-                                <p className="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                                <p className="mb-0">Exceptional service and mouthwatering pastries; the bakery website is my go-to for all things sweet!
                                 </p>
                             </div>
                         </div>
@@ -94,11 +94,11 @@ export default function Testimonials() {
                                 <div className="d-flex align-items-center mb-3">
                                     <img className="img-fluid flex-shrink-0" src={test4} style={{ width: "60px", height: "60px" }} alt='customer4' />
                                     <div className="ps-3">
-                                        <h4 className="text-primary text-uppercase mb-1">Client Name</h4>
-                                        <span>Profession</span>
+                                        <h4 className="text-primary text-uppercase mb-1">Daniel Lewis</h4>
+                                        <span>Fitness Trainer</span>
                                     </div>
                                 </div>
-                                <p className="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                                <p className="mb-0">From custom cakes to quick deliveries, the bakery website exceeds expectations, making every occasion memorable.
                                 </p>
                             </div>
                         </div>

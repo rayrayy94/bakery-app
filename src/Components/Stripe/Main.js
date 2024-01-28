@@ -11,8 +11,9 @@ import "./styles.css";
 // This is your test publishable API key.
 const stripePromise = loadStripe("pk_test_51OYZnQC6MQ7KanJeQNlVe9YflfmIJXDMJhQdXqzMk06IqTJFrk5gWmR0DeboLyceiNayCvpaNDbKdTHZIXTMkDOS00yGK0Nczp");
 
-export default function Main() {
+export default function Main(props) {
   const [clientSecret, setClientSecret] = useState("");
+  const price = props.price;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -34,6 +35,8 @@ export default function Main() {
   };
 
   return (
+    <>
+    <h2 className="price-text">Your total bill is <span className="price-color">${price}</span></h2>
     <div className="payment-main">
         <div className="payment-container">
             <div className="App">
@@ -45,5 +48,7 @@ export default function Main() {
             </div>
         </div>
     </div>
+    
+    </>
   );
 }

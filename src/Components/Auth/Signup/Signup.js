@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles.css';
 import axios from 'axios';
 import API from '../../../Config/Config';
@@ -10,8 +10,11 @@ import { useNavigate } from 'react-router-dom';
 import { SignupSchema } from './Validation/SignupSchema';
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Signup() {
+
+    const [userImg, setUserImg] = useState(''); 
 
     let navigate = useNavigate();
 
@@ -22,7 +25,8 @@ export default function Signup() {
         phoneNumber : '',
         email : '',
         password : '',
-        confirmPassword : ''
+        confirmPassword : '',
+        file: ''
     }
 
     const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
@@ -52,7 +56,8 @@ export default function Signup() {
             phoneNumber,
             email,
             password,
-            accountType
+            accountType,
+            userImage: userImg
         }
 
 
@@ -75,6 +80,24 @@ export default function Signup() {
 
     }
 
+     // base64 code
+     function readFile(e) {
+        let files = e.target.files;
+        for (let i = 0; i < files.length; i++) {
+          (function (file) {
+            var reader = new FileReader();
+            reader.onload = () => {
+                setUserImg(reader.result);
+            };
+            reader.readAsDataURL(file);
+          })(files[i]);
+        }
+      }
+
+
+      useEffect(()=> {
+        document.getElementById('file').addEventListener('change', readFile);
+      }, []);
 
 
 
@@ -100,6 +123,7 @@ export default function Signup() {
                     <div className="col-lg-6">
                         <form onSubmit={handleSubmit} className='signup-form'> 
                             <div className="row g-3">
+                        
                                 <div className="col-sm-6">
                                     <p><span className='hiddenItem'>:</span>{errors.firstName}</p>
                                     <input type="text" name='firstName' className="form-control bg-light border-0 px-4" id='firstName' placeholder="First Name" style={{height: "55px"}} onChange={handleChange} onBlur={handleBlur} value={values.firstName} />
@@ -132,6 +156,21 @@ export default function Signup() {
                                         <option value="seller">SELLER</option>
                                     </select>
                                 </div>
+
+                                <div className='col-sm-12 signup-image-container'>
+                                    <p><span className='hiddenItem'>:</span>{errors.file}</p>
+                                    <h3 className='signup-image-text'>Upload An Image</h3>
+                                    <input type="file" name="file" id="file" accept='image/*' onChange={handleChange} onBlur={handleBlur} value={values.file} />
+                                    
+                                    <div>
+                                        {userImg !== ''?
+                                        <>
+                                            <img src={userImg} alt="user" className='userImage' />
+                                        </>:null}
+                                    </div>
+
+                                </div>
+                                
 
                                 {/* <input type="submit" className="btn btn-primary border-inner w-100 py-3" value="Create Account" /> */}
                                 
