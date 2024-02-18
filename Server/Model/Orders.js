@@ -45,6 +45,10 @@ const orderSchema = new mongoose.Schema({
         type: String,
         default: "pending"
     },
+    paymentStatus: {
+        type: Boolean,
+        default: false
+    },
 });
 
 const Order = new mongoose.model('orders', orderSchema);

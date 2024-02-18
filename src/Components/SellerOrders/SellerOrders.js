@@ -10,7 +10,7 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 export default function SellerOrders() {
 
     let navigate = useNavigate();
-    const id = localStorage.getItem('userID');
+    const sellerId = localStorage.getItem('userID');
 
     const [orders, setOrders] = useState([]);
     const [tabView, setTabView] = useState('pending');
@@ -18,7 +18,7 @@ export default function SellerOrders() {
 
     useEffect(()=> {
         async function getData(){
-            await axios.get(`${API.apiUri}/sellerorders/${id}/${tabView}`).then((res)=>{
+            await axios.get(`${API.apiUri}/sellerorders/${sellerId}/${tabView}`).then((res)=>{
                 console.log(res.data);
                 setOrders(res.data);
             }).catch((e)=>{
@@ -26,7 +26,7 @@ export default function SellerOrders() {
             });
         }
         getData();
-    }, [id, tabView, update]);
+    }, [sellerId, tabView, update]);
 
 
 
@@ -40,10 +40,24 @@ export default function SellerOrders() {
 
 
 
-      function updateStatus(status, id){
+      function updateStatus(status, id, cakePrice = 0){
         const payload = {
             orderStatus: status,
         }
+
+        // if(status === 'completed'){
+        //     const walletPayload = {
+        //         amount: cakePrice,
+        //         orderId: id,
+        //         sellerId: sellerId,
+        //     }
+    
+        //     axios.post(`${API.apiUri}/wallet`, walletPayload).then((res)=> {
+        //         console.log(res);
+        //     }).catch((e)=> {
+        //         console.log(e);
+        //     });
+        // }
 
         axios.patch(`${API.apiUri}/orders/${id}`, payload).then(()=> {
             NotificationManager.success('Order Updated');
@@ -136,7 +150,7 @@ export default function SellerOrders() {
                                     </>:
                                     item.orderStatus === 'accepted' ?
                                     <>
-                                        <button className='btn btn-primary btn-confirm' onClick={()=> updateStatus('completed', item._id)}>Complete</button>
+                                        <button className='btn btn-primary btn-confirm' onClick={()=> updateStatus('completed', item._id, item.price)}>Complete</button>
                                         <button className='btn btn-primary btn-reject' onClick={()=> updateStatus('cancelled', item._id)}>Cancel</button>
                                     </>: null
                                     }

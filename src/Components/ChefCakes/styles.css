@@ -1,0 +1,118 @@
+.orders1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 40%;
+    align-items: center;
+    background-color: #2B2825;
+    padding: 30px;
+    margin: auto;
+    border: 5px solid #E88F2A;
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px 0px #aaa;
+    margin-bottom: 50px;
+}
+
+.cakeInfo2{
+    /* border-left: 2px solid #E88F2A; */
+    padding-left: 20px;
+    /* border: 2px solid red; */
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cakeInfo2 h2{
+    color: #E88F2A;
+}
+
+.cakeInfo2 p{
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cakeInfo2 span{
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.imageContainer1 img{
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    border: 2px solid #E88F2A;
+}
+
+.heading{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.shop-img{
+    /* border: 2px solid red; */
+    display: block;
+    margin: auto;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 60%;
+}
+
+.shop-container{
+    border: 2px solid red;
+    width: 80%;
+    margin: auto;
+    background: #2B2825;
+    border: 5px solid #E88F2A;
+    border-radius: 15px;
+}
+
+.orderBTN{
+    /* border: 2px solid red; */
+    width: 100%;
+}
+
+.order-btn{
+    margin: auto;
+    /* border: 2px solid red; */
+    display: block;
+    width: 50%;
+    border-radius: 20px;
+}
+
+
+
+
+
+/* @media (min-width: 600px) and (max-width: 1200px){
+    .orders1{
+        flex-direction: column;
+        gap: 20px;
+    }
+} */
+
+@media (min-width: 300px) and (max-width: 500px){
+    .orders1{
+        flex-direction: column;
+        gap: 0px;
+        width: 90%;
+    }
+    .imageContainer1 img{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 800px){
+    .orders1{
+        flex-direction: column;
+        gap: 0px;
+        width: 80%;
+    }
+    .imageContainer1 img{
+        width: 300px;
+        height: 300px;
+    }
+}

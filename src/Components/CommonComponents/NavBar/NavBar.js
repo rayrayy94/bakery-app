@@ -71,6 +71,7 @@ export default function NavBar() {
                             <Link to="/addcake" className={navItem === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('addcake'))}>Add Cake</Link>
                             <Link to="/mycakes" className={navItem === 'mycakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('mycakes'))}>My Cakes</Link>
                             <Link to="/sellerorder" className={navItem === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('sellerorder'))}>Seller Orders</Link>
+                            <Link to="/wallet" className={navItem === 'wallet'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('wallet'))}>Wallet</Link>
                         </>
 
                         : null

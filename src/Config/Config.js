@@ -1,3 +1,3 @@
 module.exports = {
-    apiUri: 'http://localhost:8080'
+    apiUri: 'https://bakery-backend-api.onrender.com'
 }

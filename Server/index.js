@@ -9,6 +9,7 @@ require('./DB/Conn');
 const Cake = require('./Model/Cake');
 const Order = require('./Model/Orders');
 const Auth = require('./Model/Auth');
+const Wallet = require('./Model/Wallet');
 const stripe = require("stripe")('sk_test_51OYZnQC6MQ7KanJe4vtEV1eOZRGDhpnzE3dYX2j7jXY6kuYyKPXX57lMBk4poGlsicNo5kTgMhVQ090iwADNIM2D008t9Hvspx');
 
 
@@ -106,7 +107,7 @@ app.patch('/cake/:id', async (req, res) => {
 
 
 
-
+// WALLET 
 app.post('/orders', (req, res) => {
     try{
         let orderInfo = new Order(req.body);
@@ -137,12 +138,124 @@ app.patch('/orders/:id', async (req, res)=> {
     try{
         const id = req.params.id;
         const updateOrder = await Order.findByIdAndUpdate(id, req.body, {new: true});
-        res.status(200).send(updateOrder);
+        const updateWallet = await Wallet.findOneAndUpdate({orderId: id}, req.body, {new: true});
+        res.status(200).send({
+            order: updateOrder,
+            wallet: updateWallet
+        });
     }
     catch{
         res.status(500).send('Server Crashed');
     }
 });
+
+
+
+app.get('/totalEarnings/:sellerId', async (req, res)=> {
+    try{
+        const sellerId = req.params.sellerId;
+        const sumResult = await Wallet.aggregate([
+            {
+                $match: {sellerId: sellerId, paymentStatus: true, orderStatus: 'completed'}
+            },
+            {
+                $group: {
+                    _id: '$sellerId',
+                    totalAmount: { $sum: '$amount'}
+                }
+            }
+        ]);
+
+        if( sumResult.length > 0 ){
+            res.json({ totalAmount: sumResult[0].totalAmount });
+        }else{
+            res.json({ totalAmount: 0 })
+        }
+
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+});
+
+
+app.get('/expectedEarnings/:sellerId', async (req, res)=> {
+    try{
+        const sellerId = req.params.sellerId;
+        const sumResult = await Wallet.aggregate([
+            {
+                $match: {sellerId: sellerId, orderStatus: 'accepted'}
+            },
+            {
+                $group: {
+                    _id: '$sellerId',
+                    totalAmount: { $sum: '$amount'}
+                }
+            }
+        ]);
+
+        if( sumResult.length > 0 ){
+            res.json({ totalAmount: sumResult[0].totalAmount });
+        }else{
+            res.json({ totalAmount: 0 })
+        }
+
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+});
+
+
+app.get('/orderAnalytics/:id', async (req, res)=> {
+    try{
+        const sellerId = req.params.id;
+        const orders = await Order.find({sellerId: sellerId, 
+        $or: [
+            {orderStatus: { $ne: 'cancelled', $ne: 'rejected' }}
+        ]
+        });
+        if(orders.length > 0){
+            res.status(200).send(orders);
+        }else{
+            res.status(404).send('No Orders Found!');
+        }
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+});
+
+
+app.get('/orderCount/:id', async(req, res)=> {
+    try{
+        const id = req.params.id;
+        const pendingOrders = await Order.find({sellerId: id, orderStatus: 'pending'});
+        const acceptedOrders = await Order.find({sellerId: id, orderStatus: 'accepted'});
+        const rejectedOrders = await Order.find({sellerId: id, orderStatus: 'rejected'});
+        const cancelledOrders = await Order.find({sellerId: id, orderStatus: 'cancelled'});
+        const completedOrders = await Order.find({sellerId: id, orderStatus: 'completed'});
+
+        res.status(200).send({
+            data: [
+                pendingOrders.length,
+                acceptedOrders.length,
+                rejectedOrders.length,
+                cancelledOrders.length,
+                completedOrders.length,
+            ],
+            labels: ['Pending', 'Accepted', 'Rejected', 'Cancelled', 'Completed']
+        });
+
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+})
+
+
+
+
 
 
 
@@ -175,7 +288,12 @@ app.get('/sellerorders/:sellerId/:orderStatus', async(req, res)=> {
     try{
         const sellerId = req.params.sellerId;
         const orderStatus = req.params.orderStatus;
-        let findSellerOrders = await Order.find({sellerId: sellerId, orderStatus: orderStatus});
+        let findSellerOrders = await Order.find({sellerId: sellerId, orderStatus: orderStatus, 
+        $or: [
+            {paymentType: { $ne: 'card'}},
+            {paymentType: 'card', paymentStatus: 'true'}
+        ]
+        });
         res.status(200).send(findSellerOrders);
     }
     catch{
@@ -190,7 +308,12 @@ app.get('/customerorders/:customerId/:orderStatus', async(req, res)=> {
     try{
         const customerId = req.params.customerId;
         const orderStatus = req.params.orderStatus;
-        let findCustomerOrders = await Order.find({customerId: customerId, orderStatus: orderStatus});
+        let findCustomerOrders = await Order.find({customerId: customerId, orderStatus: orderStatus, 
+        $or: [
+            {paymentType: { $ne: 'card'}},
+            {paymentType: 'card', paymentStatus: 'true'}
+        ]
+        });
         res.status(200).send(findCustomerOrders)
     }
     catch{
@@ -204,23 +327,22 @@ app.get('/customerorders/:customerId/:orderStatus', async(req, res)=> {
 app.get('/sellerAccountType', async (req, res)=> {
     try{
         let findAccountType = await Auth.find({accountType: 'seller'});
-        res.status(200).send(findAccountType);
+        let accountPromiseArr = findAccountType.map(async (item)=> {
+            let seller = await Cake.find({sellerId: item._id});
+            if(seller.length > 1){
+                return item;
+            }
+            
+        })
+        let finalArr = (await Promise.all(accountPromiseArr)).slice(0,3);
+        res.status(200).send(finalArr);
     }
     catch{
         res.status(500).send('Server Crashed');
     }
 })
 
-// return sellers with cake listings of 3 or more
-app.get('/sellerListing', async (req, res)=> {
-    try{
-        let findSellerListing = await Cake.find({availabilityStatus: true });
-        res.status(200).send(findSellerListing);
-    }
-    catch{
-        res.status(500).send('Server Crashed');
-    }
-})
+
 
 
 
@@ -350,6 +472,46 @@ const calculateOrderAmount = (items) => {
 
 
 
+  app.post('/wallet', (req, res)=> {
+    try{
+        let walletData = new Wallet(req.body);
+        walletData.save().then(()=> {
+            res.status(200).send(walletData);
+        }).catch((e)=> {
+            res.status(404).send(e);
+        })
+    }
+    catch{
+        res.status(500).send('server crashed');
+    }
+  });
+
+  app.patch('/wallet/:orderId', async (req, res)=> {
+    try{
+        const id = req.params.orderId;
+        const updateWallet = await Wallet.findOneAndUpdate({orderId: id}, req.body, {new: true});
+        res.status(200).send(updateWallet);
+    }
+    catch{
+        res.status(500).send('Server Crashed');
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -382,7 +544,24 @@ app.post('/contact', (req, res)=> {
         console.log('Email sent: ' + info.response);
     }
     });
-})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
