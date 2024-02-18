@@ -22,6 +22,8 @@ import MyCakes from '../Components/MyCakes/MyCakes';
 import CustomerOrders from '../Components/CustomerOrders/CustomerOrders';
 import Main from '../Components/Stripe/Main';
 import ChefCakes from '../Components/ChefCakes/ChefCakes';
+import ConfirmPayment from '../Components/Stripe/ConfirmPayment';
+import Wallet from '../Components/Wallet/Wallet';
 
 export default function Path() {
   return (
@@ -43,7 +45,9 @@ export default function Path() {
                     <Route path='/mycakes' element={<> <SubHeader headerName='My Cakes' /> <MyCakes /> </>} />
                     <Route path='/customerorder' element={<> <SubHeader headerName='Orders' /> <CustomerOrders /> </>} />
                     <Route path='/payment' element={<>  <Main /> </>} />
-                    <Route path='/chefcakes' element={<> <SubHeader headerName='Chef Listings' /> <ChefCakes/> </>} />
+                    <Route path='/chefcakes' element={<> <SubHeader headerName='Welcome To My Shop!' /> <ChefCakes/> </>} />
+                    <Route path='/confirmpayment/:orderId' element={<>  <ConfirmPayment/> </>} />
+                    <Route path='/wallet' element={<> <SubHeader headerName='Wallet' /> <Wallet/> </>} />
                 </Routes>
             <Footer />
         </BrowserRouter>

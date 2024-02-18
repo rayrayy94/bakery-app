@@ -10,12 +10,17 @@ import { useFormik } from 'formik';
 import Modal from 'react-modal';
 import { customStyles2 } from '../../Styles/ModalStyles';
 import Main from '../Stripe/Main';
+import { useDispatch } from 'react-redux';
+import { updateOrderId } from '../../Redux/CounterSlice';
 
 export default function Orders() {
 
     const customerID = localStorage.getItem('userID');
     const [sellerId, setSellerId] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
+
+    
 
     let initialValues = {
         userName: '',
@@ -40,6 +45,7 @@ export default function Orders() {
 
 
     const [cakeImage, setCakeImage] = useState("");
+    const [cakePrice, setCakePrice] = useState(0);
 
     useEffect(()=> {
         async function getData(){
@@ -49,6 +55,7 @@ export default function Orders() {
                 document.getElementById('cakeName').value = res.data.cakeName;
                 document.getElementById('cakePrice').value = res.data.price;
                 document.getElementById('cakeType').value = res.data.cakeType;
+                setCakePrice(parseFloat(res.data.price));
                 setSellerId(res.data.sellerId);
                 setCakeImage(res.data.cakeImage); // getting image from database and setting it within cakeImage useState
 
@@ -87,11 +94,44 @@ export default function Orders() {
         }
 
         if(paymentType === 'card'){
-            setIsOpen(true);
+            axios.post(`${API.apiUri}/orders`, orderDetails).then((res)=> {
+                console.log(res.data);
+                
+                const walletPayload = {
+                    amount: cakePrice,
+                    orderId: res.data._id,
+                    sellerId: res.data.sellerId,
+                }
+        
+                axios.post(`${API.apiUri}/wallet`, walletPayload).then((res)=> {
+                    console.log(res);
+                }).catch((e)=> {
+                    console.log(e);
+                });
+
+                dispatch(updateOrderId(res.data._id));
+                setIsOpen(true);
+            }).catch((e)=>{
+                console.log(e);
+                NotificationManager.error('Order Failed!');
+            });
+
         }else{
             axios.post(`${API.apiUri}/orders`, orderDetails).then((res)=> {
                 console.log(res.data);
                 NotificationManager.success('Order Successful!');
+
+                const walletPayload = {
+                    amount: cakePrice,
+                    orderId: res.data._id,
+                }
+        
+                axios.post(`${API.apiUri}/wallet`, walletPayload).then((res)=> {
+                    console.log(res);
+                }).catch((e)=> {
+                    console.log(e);
+                });
+
                 navigate('/customerorder');
             }).catch((e)=>{
                 console.log(e);
@@ -99,6 +139,7 @@ export default function Orders() {
             });
 
         }
+
 
 
     }

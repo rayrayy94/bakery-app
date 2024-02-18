@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import API from '../../Config/Config';
 import { useNavigate } from 'react-router-dom';
+import chefImage from '../../img/chef.jpeg';
+import './styles.css';
 
 
 export default function Team() {
@@ -13,15 +15,16 @@ export default function Team() {
     const navigate = useNavigate();
 
     const [info, setInfo] = useState([]);
+ 
 
     useEffect(()=> {
         axios.get(`${API.apiUri}/sellerAccountType`).then((res)=>{
-            console.log(res.data);
+            console.log(res);
             setInfo(res.data);
         }).catch((e)=>{
             console.log(e);
         })
-    }, [])
+    }, []);
 
 
     function chefListing(id){
@@ -38,31 +41,38 @@ export default function Team() {
                 <h1 className="display-4 text-uppercase">Our Master Chefs</h1>
             </div>
 
-     
             <div className="row g-5">
 
-               
-
-
-
                  {info.map((users)=> {
-                    return(
-                        <div className="col-lg-4 col-md-6" key={users._id}>
-                            <div>
-                                <div className="team-item">
-                                    <div className="position-relative overflow-hidden">
-                                        <img className="img-fluid w-100" src={users.userImage} alt="chef 1" />
-                                    </div>
-                                    <div className="bg-dark border-inner text-center p-4">
-                                        <h4 className="text-uppercase text-primary">Chef: {users.firstName}</h4>
-                                        <p className="text-white m-0">Designation</p>
-                                        <button onClick={()=> chefListing(users._id)}>Go to selection</button>
+                    if(users !== null){
+                        return(
+                            <div className="col-lg-4 col-md-6" key={users._id}>
+                                <div>
+                                    <div className="team-item">
+                                        <div className="position-relative overflow-hidden">
+                                               <img className='img-fluid w-100 img' src={users.userImage ? users.userImage : chefImage} alt='users'/>
+                                               
+                                                <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                                                    <div class="d-flex align-items-center justify-content-start">
+                                                        <button className='btn btn-primary' onClick={()=> chefListing(users._id)}>Go to selection</button>
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                        <div className="bg-dark border-inner text-center p-4">
+                                            <h4 className="text-uppercase text-primary">Chef: {users.firstName}</h4>
+                                            <p className="text-white m-0">Designation</p>
+                                        </div>
                                     </div>
                                 </div>
+    
                             </div>
+                        )
 
-                        </div>
-                    )
+                    }
+                    else{
+                        return null;
+                    }
                 })} 
 
                 {/* <div className="col-lg-4 col-md-6">

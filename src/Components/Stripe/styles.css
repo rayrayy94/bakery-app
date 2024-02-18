@@ -126,6 +126,24 @@
   .price-color{
     color: #E88F2A;
   }
+
+
+
+
+  .confirm-payment-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .confirm-payment-container div{
+    text-align: center;
+  }
+
+
+
+
   
   @keyframes loading {
     0% {
