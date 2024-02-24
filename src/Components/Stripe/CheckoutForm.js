@@ -60,7 +60,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://main--nimble-narwhal-9653f1.netlify.app/confirmPayment/${orderId}`,
+        return_url: `https://bakery-app123.netlify.app/confirmPayment/${orderId}`,
       },
     });
 
