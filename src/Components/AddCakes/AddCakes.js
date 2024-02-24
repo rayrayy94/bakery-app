@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { updateNavItem } from '../../Redux/CounterSlice';
 import { useDispatch } from 'react-redux';
+import API from '../../Config/Config';
 
 export default function AddCakes() {
 
@@ -66,7 +67,7 @@ export default function AddCakes() {
         sellerId: auth
     }
 
-    axios.post('http://localhost:8080/cake', addCakeData).then(()=>{
+    axios.post(`${API.apiUri}/cake`, addCakeData).then(()=>{
         console.log('Cake Added');
         NotificationManager.success('Cake Added');
         setTimeout(() => {
