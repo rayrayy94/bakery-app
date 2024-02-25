@@ -70,6 +70,8 @@ export default function NavBar() {
                         <span className="line line3"></span>
                     </div>
                     <div className="menu-items">
+
+
                         <Link to="/" className={navItem === 'home'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('home'))}>Home</Link>
                         <Link to="/aboutus" className={navItem === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('about'))}>About</Link>
                         <Link to="/cakes" className={navItem === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('cakes'))}>Cakes</Link>
@@ -80,6 +82,15 @@ export default function NavBar() {
                             <Link to="/mycakes" className={navItem === 'mycakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('mycakes'))}>Listings</Link>
                             <Link to="/sellerorder" className={navItem === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('sellerorder'))}>Orders</Link>
                             <Link to="/wallet" className={navItem === 'wallet'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('wallet'))}>Wallet</Link>
+                            <div className='logout-btn'>
+                            {id ? 
+                            <>
+                                <button className='btn btn-primary p-4 w-40 border-inner' onClick={logout}><FontAwesomeIcon icon={faRightFromBracket} className="userIcon fs-1 text-primary me-3"/>LOG OUT</button>
+                            </>
+                            : null}
+                            
+                        </div>
+
                         </>
 
                         : null
@@ -92,11 +103,32 @@ export default function NavBar() {
 
                         : null
                         }
+
+
+                        <div className='signup-btn'>
+                            <Link to={id ? '/' : '/signup'}>
+                                <button className='btn btn-primary border-inner w-40 p-4 mt-3 btn-style'>{userImage ? <img src={userImage} alt='user' className="userIcon" /> : <FontAwesomeIcon icon={faUser} className="userIcon fs-1 text-primary me-3"/>} {userName ? 'Hello' + " " + userName.toUpperCase() : 'SIGN UP'}</button>
+                            </Link>
+                        </div>
                         
                         {/* <Link to="/contact" className={navItem === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('contact'))}>Contact Us</Link> */}
 
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <div className="collapse navbar-collapse nav-container" id="navbarCollapse">
                     <div className="navbar-nav mx-4">
@@ -109,7 +141,7 @@ export default function NavBar() {
                             <Link to="/addcake" className={navItem === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('addcake'))}>Add Cake</Link>
                             <Link to="/mycakes" className={navItem === 'mycakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('mycakes'))}>Listings</Link>
                             <Link to="/sellerorder" className={navItem === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('sellerorder'))}>Orders</Link>
-                            <Link to="/wallet" className={navItem === 'wallet'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('wallet'))}>Wallet</Link>
+                            <Link to="/wallet" className={navItem === 'wallet'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('wallet'))}>Wallet</Link>                            
                         </>
 
                         : null
