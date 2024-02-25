@@ -57,20 +57,28 @@ export default function NavBar() {
                 <Link to="/" className="navbar-brand d-block d-lg-none">
                     <h1 className="m-0 text-uppercase text-white"><FontAwesomeIcon icon={faBirthdayCake} className="fs-1 text-primary me-3"/>CakeZone</h1>
                 </Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                
+                {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse nav-container" id="navbarCollapse">
-                    <div className="navbar-nav mx-4">
+                </button> */}
+
+                <div className='hamburger-menu'>
+                    <input type="checkbox"/>
+                    <div className="hamburger-lines">
+                        <span className="line line1"></span>
+                        <span className="line line2"></span>
+                        <span className="line line3"></span>
+                    </div>
+                    <div className="menu-items">
                         <Link to="/" className={navItem === 'home'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('home'))}>Home</Link>
-                        <Link to="/aboutus" className={navItem === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('about'))}>About Us</Link>
+                        <Link to="/aboutus" className={navItem === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('about'))}>About</Link>
                         <Link to="/cakes" className={navItem === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('cakes'))}>Cakes</Link>
                         
                         {accountType === 'seller' ?
                         <>
                             <Link to="/addcake" className={navItem === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('addcake'))}>Add Cake</Link>
-                            <Link to="/mycakes" className={navItem === 'mycakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('mycakes'))}>My Cakes</Link>
-                            <Link to="/sellerorder" className={navItem === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('sellerorder'))}>Seller Orders</Link>
+                            <Link to="/mycakes" className={navItem === 'mycakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('mycakes'))}>Listings</Link>
+                            <Link to="/sellerorder" className={navItem === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('sellerorder'))}>Orders</Link>
                             <Link to="/wallet" className={navItem === 'wallet'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('wallet'))}>Wallet</Link>
                         </>
 
@@ -85,7 +93,37 @@ export default function NavBar() {
                         : null
                         }
                         
-                        <Link to="/contact" className={navItem === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('contact'))}>Contact Us</Link>
+                        {/* <Link to="/contact" className={navItem === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('contact'))}>Contact Us</Link> */}
+
+                    </div>
+                </div>
+
+                <div className="collapse navbar-collapse nav-container" id="navbarCollapse">
+                    <div className="navbar-nav mx-4">
+                        <Link to="/" className={navItem === 'home'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('home'))}>Home</Link>
+                        <Link to="/aboutus" className={navItem === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('about'))}>About</Link>
+                        <Link to="/cakes" className={navItem === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('cakes'))}>Cakes</Link>
+                        
+                        {accountType === 'seller' ?
+                        <>
+                            <Link to="/addcake" className={navItem === 'addcake'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('addcake'))}>Add Cake</Link>
+                            <Link to="/mycakes" className={navItem === 'mycakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('mycakes'))}>Listings</Link>
+                            <Link to="/sellerorder" className={navItem === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('sellerorder'))}>Orders</Link>
+                            <Link to="/wallet" className={navItem === 'wallet'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('wallet'))}>Wallet</Link>
+                        </>
+
+                        : null
+                        }
+
+                        {accountType === 'customer' ?
+                        <>
+                            <Link to="/customerorder" className={navItem === 'customerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('customerorder'))}>My Orders</Link>
+                        </>
+
+                        : null
+                        }
+                        
+                        {/* <Link to="/contact" className={navItem === 'contact'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('contact'))}>Contact Us</Link> */}
                     </div>
 
                     <div className='px-5 btn-container'>
