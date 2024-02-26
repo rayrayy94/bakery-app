@@ -142,6 +142,10 @@
     .cakeInfo h2, .customerInfo h2{
         padding-top: 20px;
     }
+    .noOrderTextBox{
+        width: 80%;
+    }
+    
 }
 
 @media (min-width:501px) and (max-width: 600px) {
@@ -158,6 +162,26 @@
     }
     .cakeInfo h2, .customerInfo h2{
         padding-top: 20px;
+    }
+    .noOrderTextBox{
+        width: 85%;
+        height: 150px;
+        margin: auto;
+        background-color: #2B2825;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .noOrderText{
+        color: #E88F2A;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+    
+    .emoji{
+        font-size: 30px;
     }
 }
 
@@ -179,5 +203,25 @@
     }
     .cakeInfo h2, .customerInfo h2{
         padding-top: 20px;
+    }
+    .noOrderTextBox{
+        width: 75%;
+        height: 200px;
+        margin: auto;
+        background-color: #2B2825;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .noOrderText{
+        color: #E88F2A;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+    
+    .emoji{
+        font-size: 25px;
     }
 }

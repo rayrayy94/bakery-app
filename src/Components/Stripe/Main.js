@@ -27,7 +27,7 @@ export default function Main(props) {
   }, []);
 
   const appearance = {
-    theme: 'flat',
+    theme: 'stripe',
   };
   const options = {
     clientSecret,

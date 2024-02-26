@@ -74,7 +74,7 @@ export default function NavBar() {
 
                         <Link to="/" className={navItem === 'home'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('home'))}>Home</Link>
                         <Link to="/aboutus" className={navItem === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('about'))}>About</Link>
-                        <Link to="/cakes" className={navItem === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('cakes'))}>Cakes</Link>
+
                         
                         {accountType === 'seller' ?
                         <>
@@ -83,11 +83,7 @@ export default function NavBar() {
                             <Link to="/sellerorder" className={navItem === 'sellerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('sellerorder'))}>Orders</Link>
                             <Link to="/wallet" className={navItem === 'wallet'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('wallet'))}>Wallet</Link>
                             <div className='logout-btn'>
-                            {id ? 
-                            <>
-                                <button className='btn btn-primary p-4 w-40 border-inner' onClick={logout}><FontAwesomeIcon icon={faRightFromBracket} className="userIcon fs-1 text-primary me-3"/>LOG OUT</button>
-                            </>
-                            : null}
+                           
                             
                         </div>
 
@@ -98,11 +94,19 @@ export default function NavBar() {
 
                         {accountType === 'customer' ?
                         <>
+                            <Link to="/cakes" className={navItem === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('cakes'))}>Cakes</Link>
                             <Link to="/customerorder" className={navItem === 'customerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('customerorder'))}>Customer Orders</Link>
                         </>
 
                         : null
                         }
+
+
+                        {id ? 
+                        <>
+                            <button className='btn btn-primary p-4 w-40 border-inner' onClick={logout}><FontAwesomeIcon icon={faRightFromBracket} className="userIcon fs-1 text-primary me-3"/>LOG OUT</button>
+                        </>
+                        : null}
 
 
                         <div className='signup-btn'>
@@ -134,7 +138,6 @@ export default function NavBar() {
                     <div className="navbar-nav mx-4">
                         <Link to="/" className={navItem === 'home'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('home'))}>Home</Link>
                         <Link to="/aboutus" className={navItem === 'about'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('about'))}>About</Link>
-                        <Link to="/cakes" className={navItem === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('cakes'))}>Cakes</Link>
                         
                         {accountType === 'seller' ?
                         <>
@@ -149,6 +152,7 @@ export default function NavBar() {
 
                         {accountType === 'customer' ?
                         <>
+                            <Link to="/cakes" className={navItem === 'cakes'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('cakes'))}>Cakes</Link>
                             <Link to="/customerorder" className={navItem === 'customerorder'? "nav-item nav-link active": "nav-item nav-link"} onClick={()=> dispatch(updateNavItem('customerorder'))}>My Orders</Link>
                         </>
 
