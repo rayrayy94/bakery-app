@@ -1,3 +1,16 @@
+Link to website - https://bakery-app123.netlify.app
+
+Technologies used :
+-React
+-Node
+-Express
+-MongoDB
+
+Includes buyer/seller login with dashboard for each type with stripe payment integration 
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
