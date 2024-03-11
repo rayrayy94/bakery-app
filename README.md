@@ -6,7 +6,8 @@ Technologies used :
 -Express
 -MongoDB
 
-Includes buyer/seller login with dashboard for each type with stripe payment integration 
+Payment gateway :
+-Stripe 
 
 
 
